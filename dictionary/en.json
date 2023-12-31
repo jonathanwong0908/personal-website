@@ -1,5 +1,9 @@
 {
   "Index": {
     "title": "Hello world!"
+  },
+  "language": {
+    "en": "English",
+    "jp": "日本語"
   }
 }
