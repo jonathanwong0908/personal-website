@@ -1,3 +1,4 @@
+import Navbar from "@/components/core/navbar";
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { locales } from "@/config/intl";
 import { generalSans } from "@/lib/fonts";
@@ -42,7 +43,12 @@ export default function RootLayout({
             defaultTheme="dark"
             themes={["dark", "light"]}
           >
-            <div className="min-h-screen bg-background">{children}</div>
+            <div className="relative min-h-screen">
+              <header className="absolute top-0 z-40 w-full">
+                <Navbar />
+              </header>
+              {children}
+            </div>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

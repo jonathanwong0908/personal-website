@@ -1,3 +1,4 @@
+import { RocknRoll_One } from "next/font/google";
 import localFont from "next/font/local";
 
 export const generalSans = localFont({
@@ -18,4 +19,10 @@ export const generalSans = localFont({
       style: "normal",
     },
   ],
+});
+
+export const rockNRoll = RocknRoll_One({
+  weight: "400",
+  variable: "--font-logo",
+  subsets: ["latin"],
 });

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 import StaggeredText from "../animation/staggered-text";
-import FadeIn from "../animation/fade-in-up";
+import FadeIn from "../animation/fade-in";
 
 type Props = {
   locale: LocaleString;
@@ -16,7 +16,7 @@ const Hero = async ({ locale }: Props) => {
     <div className="text-display relative grid min-h-screen place-items-center bg-background">
       <div
         className={cn(
-          "grid w-full place-items-center gap-16",
+          "z-10 grid w-full place-items-center gap-16",
           locale === "en" ? "max-w-5xl" : "max-w-6xl",
         )}
       >
@@ -25,26 +25,26 @@ const Hero = async ({ locale }: Props) => {
             text={t("titleTop")}
             el="span"
             once
-            staggerChildren={0.08}
+            staggerChildren={locale === "en" ? 0.05 : 0.08}
           />
           <StaggeredText
             text={t("titleBottom")}
             el="span"
             className="text-end"
             once
-            delayChildren={0.8}
-            staggerChildren={0.08}
+            delayChildren={0.5}
+            staggerChildren={locale === "en" ? 0.05 : 0.08}
           />
         </h1>
-        <FadeIn delay={1.4} duration={0.6}>
-          <h2
+        <FadeIn delay={1.5} duration={0.6}>
+          <p
             className={cn(
               "text-body grid place-items-center text-2xl tracking-wide",
               locale === "en" ? "font-normal" : "font-normal",
             )}
           >
             {t("subtitle")}
-          </h2>
+          </p>
         </FadeIn>
       </div>
     </div>

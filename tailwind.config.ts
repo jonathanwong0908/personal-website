@@ -11,6 +11,9 @@ const config = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      logo: "var(--font-logo)",
+    },
     extend: {
       keyframes: {
         "accordion-down": {

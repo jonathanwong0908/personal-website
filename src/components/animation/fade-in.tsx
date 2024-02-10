@@ -10,6 +10,7 @@ type FadeInProps = {
   once?: boolean;
   delay?: number;
   duration?: number;
+  direction?: "up" | "down";
 };
 
 const FadeIn = ({
@@ -18,6 +19,7 @@ const FadeIn = ({
   once,
   delay,
   duration,
+  direction,
 }: FadeInProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: once || true });
@@ -25,7 +27,7 @@ const FadeIn = ({
   const variants = {
     hidden: {
       opacity: 0,
-      y: 10,
+      y: direction === "down" ? -20 : 20,
     },
     show: {
       opacity: 1,
