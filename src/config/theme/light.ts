@@ -12,6 +12,7 @@ export default {
     textColor: {
       display: colors.slate[800],
       body: colors.slate[600],
+      inverted: colors.slate[50],
     },
   },
 };

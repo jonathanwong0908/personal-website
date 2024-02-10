@@ -1,8 +1,8 @@
-import { rockNRoll } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import React from "react";
-import MagneticWrapper from "../animation/magnetic-wrapper";
+import MagneticWrapper from "../../animation/magnetic-wrapper";
 import { Link } from "@/navigation";
+import LogoRotateWrapper from "./rotate-wrapper";
 
 const Logo = () => {
   return (
@@ -11,10 +11,10 @@ const Logo = () => {
         <Link href="/" className="">
           <span
             className={cn(
-              "grid aspect-square w-16 rotate-45 place-items-center rounded-full bg-slate-700 text-3xl font-bold text-slate-100",
+              "grid aspect-square w-16 place-items-center rounded-full bg-slate-700 text-3xl font-bold text-slate-100",
             )}
           >
-            ジ
+            <LogoRotateWrapper>ジ</LogoRotateWrapper>
           </span>
         </Link>
       </MagneticWrapper>
