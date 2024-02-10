@@ -6,9 +6,7 @@
     "hero": {
       "titleTop": "こんにちは、",
       "titleBottom": "ジョナサンです",
-      "subtitle": "ビジョンを現実にするフロントエンドエンジニア",
-      "subtitleTop": "ビジョンを現実にする",
-      "subtitleBottom": "フロントエンドエンジニア"
+      "subtitle": "ビジョンを現実にするフロントエンドエンジニア"
     }
   }
 }

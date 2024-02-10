@@ -10,6 +10,7 @@ export default {
     },
     textColor: {
       display: colors.slate[800],
+      body: colors.slate[700],
     },
   },
 };

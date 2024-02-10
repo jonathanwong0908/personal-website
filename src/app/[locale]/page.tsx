@@ -14,7 +14,6 @@ export default function Home({ params: { locale } }: HomePageProps) {
   return (
     <SmoothScrollWrapper>
       <Hero locale={locale} />
-      <Hero locale={locale} />
     </SmoothScrollWrapper>
   );
 }

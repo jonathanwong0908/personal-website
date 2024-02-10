@@ -2,6 +2,8 @@ import { LocaleString } from "@/config/intl";
 import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import React from "react";
+import StaggeredText from "../animation/staggered-text";
+import FadeIn from "../animation/fade-in-up";
 
 type Props = {
   locale: LocaleString;
@@ -19,17 +21,31 @@ const Hero = async ({ locale }: Props) => {
         )}
       >
         <h1 className="flex w-full flex-col gap-8 text-9xl font-bold uppercase">
-          <span>{t("titleTop")}</span>
-          <span className="text-end">{t("titleBottom")}</span>
+          <StaggeredText
+            text={t("titleTop")}
+            el="span"
+            once
+            staggerChildren={0.08}
+          />
+          <StaggeredText
+            text={t("titleBottom")}
+            el="span"
+            className="text-end"
+            once
+            delayChildren={0.8}
+            staggerChildren={0.08}
+          />
         </h1>
-        <h2
-          className={cn(
-            "grid place-items-center text-2xl tracking-wide",
-            locale === "en" ? "font-normal" : "font-normal",
-          )}
-        >
-          {t("subtitle")}
-        </h2>
+        <FadeIn delay={1.4} duration={0.6}>
+          <h2
+            className={cn(
+              "text-body grid place-items-center text-2xl tracking-wide",
+              locale === "en" ? "font-normal" : "font-normal",
+            )}
+          >
+            {t("subtitle")}
+          </h2>
+        </FadeIn>
       </div>
     </div>
   );
