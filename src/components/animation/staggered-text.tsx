@@ -14,7 +14,7 @@ type StaggeredTextProps = {
 
 const defaultAnimations = {
   hidden: {
-    opacity: 0.2,
+    opacity: 0,
     y: 10,
   },
   visible: {

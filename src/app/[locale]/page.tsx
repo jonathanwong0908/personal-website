@@ -1,3 +1,4 @@
+import Cursor from "@/components/animation/cursor";
 import SmoothScrollWrapper from "@/components/animation/smooth-scroll-wrapper";
 import LocaleSwitcher from "@/components/core/locale-switcher";
 import ThemeSwitcher from "@/components/core/theme-switcher";
