@@ -2,6 +2,7 @@ import Cursor from "@/components/animation/cursor";
 import SmoothScrollWrapper from "@/components/animation/smooth-scroll-wrapper";
 import LocaleSwitcher from "@/components/core/locale-switcher";
 import ThemeSwitcher from "@/components/core/theme-switcher";
+import About from "@/components/home/about";
 import Hero from "@/components/home/hero";
 import { LocaleString } from "@/config/intl";
 
@@ -14,8 +15,13 @@ type HomePageProps = {
 export default function Home({ params: { locale } }: HomePageProps) {
   return (
     <SmoothScrollWrapper>
-      <Hero locale={locale} />
-      <Hero locale={locale} />
+      <div className="relative">
+        <Hero locale={locale} />
+        <div className="bg-background">
+          <About />
+        </div>
+        <Hero locale={locale} />
+      </div>
     </SmoothScrollWrapper>
   );
 }

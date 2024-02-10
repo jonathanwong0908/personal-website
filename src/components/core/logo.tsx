@@ -11,8 +11,7 @@ const Logo = () => {
         <Link href="/" className="">
           <span
             className={cn(
-              "grid aspect-square w-16 rotate-12 place-items-center rounded-full bg-slate-700 text-3xl text-slate-100",
-              rockNRoll.className,
+              "grid aspect-square w-16 rotate-45 place-items-center rounded-full bg-slate-700 text-3xl font-bold text-slate-100",
             )}
           >
             ジ

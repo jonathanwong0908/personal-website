@@ -6,7 +6,8 @@ export default {
   name: "light",
   extend: {
     backgroundColor: {
-      background: colors.slate[100],
+      background: colors.slate[50],
+      inverted: colors.slate[800],
     },
     textColor: {
       display: colors.slate[800],

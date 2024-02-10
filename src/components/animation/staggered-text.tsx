@@ -15,7 +15,7 @@ type StaggeredTextProps = {
 const defaultAnimations = {
   hidden: {
     opacity: 0,
-    y: 10,
+    y: 20,
   },
   visible: {
     opacity: 1,
@@ -65,6 +65,7 @@ const StaggeredText = ({
                   <motion.span
                     className="inline-block"
                     variants={defaultAnimations}
+                    transition={{ type: "just" }}
                     key={index}
                   >
                     {char}
