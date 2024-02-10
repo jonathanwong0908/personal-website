@@ -13,15 +13,15 @@ const Hero = async ({ locale }: Props) => {
   const t = await getTranslations("home.hero");
 
   return (
-    <div className="relative grid min-h-screen place-items-center bg-background text-display">
+    <div className="relative flex min-h-screen items-end justify-center bg-background text-display md:items-center">
       <div
         className={cn(
-          "z-10 grid w-full place-items-center gap-16",
+          "flex w-full flex-col gap-4 px-4 py-8 md:gap-16",
           locale === "en" ? "max-w-5xl" : "max-w-6xl",
         )}
       >
         <h1 className="sr-only">{t("title")}</h1>
-        <h1 className="flex w-full flex-col gap-8 text-9xl font-bold uppercase">
+        <h1 className="flex w-full flex-col text-4xl font-bold uppercase md:gap-8 md:text-8xl lg:text-9xl">
           <StaggeredText
             text={t("titleTop")}
             el="span"
@@ -31,7 +31,7 @@ const Hero = async ({ locale }: Props) => {
           <StaggeredText
             text={t("titleBottom")}
             el="span"
-            className="text-end"
+            className="md:text-end"
             once
             delayChildren={0.5}
             staggerChildren={locale === "en" ? 0.05 : 0.08}
@@ -40,7 +40,7 @@ const Hero = async ({ locale }: Props) => {
         <FadeIn delay={1.5} duration={0.6}>
           <p
             className={cn(
-              "grid place-items-center text-2xl tracking-wide text-body",
+              "grid tracking-wide text-body md:place-items-center md:text-2xl",
               locale === "en" ? "font-normal" : "font-normal",
             )}
           >
