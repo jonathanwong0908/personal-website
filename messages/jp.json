@@ -1,5 +1,14 @@
 {
   "rootLayout": {
-    "title": "こんにちは、世界"
+    "title": "ジョナサン - フロントエンドエンジニア"
+  },
+  "home": {
+    "hero": {
+      "titleTop": "こんにちは、",
+      "titleBottom": "ジョナサンです",
+      "subtitle": "ビジョンを現実にするフロントエンドエンジニア",
+      "subtitleTop": "ビジョンを現実にする",
+      "subtitleBottom": "フロントエンドエンジニア"
+    }
   }
 }

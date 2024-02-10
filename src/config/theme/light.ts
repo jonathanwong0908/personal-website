@@ -6,7 +6,10 @@ export default {
   name: "light",
   extend: {
     backgroundColor: {
-      background: colors.orange[50],
+      background: colors.slate[100],
+    },
+    textColor: {
+      display: colors.slate[800],
     },
   },
 };

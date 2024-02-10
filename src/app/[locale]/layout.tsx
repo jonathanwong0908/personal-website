@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { locales } from "@/config/intl";
+import { generalSans } from "@/lib/fonts";
 import type { Metadata } from "next";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -33,7 +34,7 @@ export default function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body className={generalSans.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider
             storageKey="theme"
@@ -41,7 +42,7 @@ export default function RootLayout({
             defaultTheme="dark"
             themes={["dark", "light"]}
           >
-            <div className="bg-background min-h-screen">hi{children}</div>
+            <div className="min-h-screen bg-background">{children}</div>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

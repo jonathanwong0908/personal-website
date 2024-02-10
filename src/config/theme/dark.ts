@@ -6,7 +6,7 @@ export default {
   name: "dark",
   extend: {
     backgroundColor: {
-      background: colors.neutral[950],
+      background: colors.slate[950],
     },
   },
 };
