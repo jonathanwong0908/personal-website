@@ -4,6 +4,7 @@
   },
   "home": {
     "hero": {
+      "title": "Hello, I'm Jonathan",
       "titleTop": "Hello, I'm",
       "titleBottom": "Jonathan",
       "subtitle": "A frontend developer driving visions into reality"

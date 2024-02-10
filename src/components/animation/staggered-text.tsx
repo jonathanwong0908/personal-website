@@ -46,7 +46,6 @@ const StaggeredText = ({
 
   return (
     <Wrapper className={className}>
-      <span className="sr-only">{text}</span>
       <motion.span
         ref={ref}
         className=""
