@@ -18,7 +18,7 @@ const ScrollOpacityText = ({
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.9", "start 0.25"],
+    offset: ["start 0.9", "start 0.45"],
   });
 
   const words = text.split(" ");

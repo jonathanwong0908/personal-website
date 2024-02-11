@@ -1,16 +1,29 @@
+import { getTranslations } from "next-intl/server";
 import ScrollOpacityText from "../animation/scroll-opacity-text";
 import ScrollScaleContainer from "../animation/scroll-scale-container";
+import StaggeredText from "../animation/staggered-text";
 
-const About = () => {
+const About = async () => {
+  const t = await getTranslations("home.about");
+
   return (
-    <ScrollScaleContainer className="min-h-screen rounded-lg bg-inverted">
+    <ScrollScaleContainer className="rounded-lg bg-inverted px-4 py-8 md:p-12 lg:p-20">
       <section id="about-section h-full">
-        <div className="grid h-full place-items-center">
+        <h2 className="sr-only">{t("title")}</h2>
+        <p className="sr-only">{t("paragraph")}</p>
+
+        <div className="mx-auto grid max-w-7xl gap-12">
+          <StaggeredText
+            aria-hidden
+            text={t("title")}
+            el="h2"
+            className="text-display-inverted text-3xl font-bold uppercase md:text-5xl lg:text-6xl"
+            once
+          />
           <ScrollOpacityText
-            className="text-inverted max-w-xl text-2xl"
-            text={
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, commodi alias? Obcaecati, neque totam! Explicabo atque aperiam fugit. Quibusdam, alias."
-            }
+            aria-hidden
+            className="text-body-inverted w-full max-w-4xl text-lg md:text-2xl"
+            text={t("paragraph")}
           />
         </div>
       </section>
