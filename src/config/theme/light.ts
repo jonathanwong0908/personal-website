@@ -7,7 +7,7 @@ export default {
   extend: {
     backgroundColor: {
       background: colors.slate[50],
-      inverted: colors.slate[800],
+      inverted: colors.slate[950],
     },
     textColor: {
       display: colors.slate[800],

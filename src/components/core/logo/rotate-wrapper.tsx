@@ -12,7 +12,7 @@ const variants = {
     rotate: "0deg",
   },
   loaded: {
-    rotate: "45deg",
+    rotate: "38deg",
   },
 };
 
@@ -22,7 +22,7 @@ const LogoRotateWrapper = ({ children }: LogoRotateWrapperProps) => {
       variants={variants}
       initial="firstLoaded"
       animate="loaded"
-      transition={{ delay: 2, duration: 0.5 }}
+      transition={{ delay: 2.5, duration: 0.5 }}
     >
       {children}
     </motion.span>

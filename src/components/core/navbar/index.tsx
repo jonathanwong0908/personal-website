@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "./logo";
-import FadeIn from "../animation/fade-in";
+import Logo from "../logo";
+import FadeIn from "../../animation/fade-in";
 
 const Navbar = () => {
   return (
