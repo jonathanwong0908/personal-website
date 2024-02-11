@@ -13,13 +13,26 @@
       "title": "About Me.",
       "paragraph": "Coming from a marketing background, I transitioned into frontend development driven by my passion for creating engaging websites and apps that captivate users and guide them effortlessly. I'm continuously exploring design trends and using new technologies.",
       "toolsTitle": "My toolbox.",
-      "toolsSubtitle": "My current go to stack for building modern websites and applications, got some more up my sleeve.",
+      "toolsSubtitle": "My current go-to stack for building modern websites and applications, got some more up my sleeve.",
       "frontend": "Frontend",
       "backend": "Backend",
-      "projectsTitle": "Projects.",
-      "projectsSubtitle": "Large scale projects under construction",
-      "journeyTitle": "My journey.",
-      "journeySubtitle": ""
+      "journey": {
+        "title": "My journey.",
+        "subtitle": "My journey from being a finance-wannabe to a developer",
+        "frontendDeveloper": "Frontend Developer",
+        "frontendDeveloperDescription": "Hard grinded to learn the depths of programming",
+        "marketingExecutive": "Marketing Executive",
+        "marketingExecutiveDescription": "Experienced the power of good UI/UX",
+        "financeIntern": "Finance Intern",
+        "financeInternDescription": "Entered the world of coding with VBA"
+      },
+      "projects": {
+        "title": "Projects.",
+        "subtitle": "Large scale projects I build in my free time",
+        "project1": "Manabo",
+        "project1Description": "A platform that offers and discusses Japanese language learning materials",
+        "building": "Under construction"
+      }
     }
   }
 }

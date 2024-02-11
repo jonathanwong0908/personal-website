@@ -13,12 +13,15 @@ export default {
       display: colors.slate[800],
       body: colors.slate[600],
       muted: colors.slate[500],
+      subdued: colors.slate[400],
       "display-inverted": colors.slate[50],
       "body-inverted": colors.slate[300],
       "muted-inverted": colors.slate[500],
+      "subdued-inverted": colors.slate[600],
     },
     borderColor: {
-      DEFAULT: colors.slate[200],
+      DEFAULT: colors.slate[800],
+      inverted: colors.slate[800],
     },
   },
 };
