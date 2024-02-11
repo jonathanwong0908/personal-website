@@ -23,7 +23,7 @@ const ScrollScaleContainer = ({
   const scaleProgress = useTransform(
     scrollYProgress,
     [0, 1],
-    scale ?? [0.9, 0.98],
+    scale ?? [0.85, 0.98],
   );
 
   return (
