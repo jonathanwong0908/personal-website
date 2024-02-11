@@ -52,7 +52,7 @@ const StaggeredText = ({
         initial="hidden"
         animate={controls}
         transition={{
-          staggerChildren: staggerChildren ?? 0.01,
+          staggerChildren: staggerChildren ?? 0.05,
           delayChildren: delayChildren ?? 0,
         }}
         aria-hidden

@@ -2,6 +2,9 @@
   "rootLayout": {
     "title": "ジョナサン - フロントエンドエンジニア"
   },
+  "footer": {
+    "name": "ジョナサン・"
+  },
   "home": {
     "hero": {
       "title": "こんにちは、ジョナサンです",
@@ -9,12 +12,16 @@
       "titleBottom": "ジョナサンです",
       "subtitle": "ビジョンを現実にするフロントエンドエンジニア"
     },
+
     "about": {
-      "title": "私について。",
+      "title": "私について・",
       "paragraph": "Coming from a marketing background, I transitioned into frontend development driven by my passion for creating engaging websites and apps that captivate users and guide them effortlessly. I'm continuously exploring design trends and using new technologies.",
-      "toolsTitle": "よく使うツール。",
-      "frontend": "フロントエンド",
-      "backend": "バックエンド",
+      "tools": {
+        "title": "よく使うツール・",
+        "subtitle": "My current go-to stack for building modern websites and applications, got some more up my sleeve.",
+        "frontend": "フロントエンド",
+        "backend": "バックエンド"
+      },
       "journey": {
         "title": "My journey.",
         "subtitle": "My journey from being a finance-wannabe to a developer",

@@ -2,6 +2,9 @@
   "rootLayout": {
     "title": "Jonathan - Frontend Developer"
   },
+  "footer": {
+    "name": "Jonathan W"
+  },
   "home": {
     "hero": {
       "title": "Hello, I'm Jonathan",
@@ -16,6 +19,12 @@
       "toolsSubtitle": "My current go-to stack for building modern websites and applications, got some more up my sleeve.",
       "frontend": "Frontend",
       "backend": "Backend",
+      "tools": {
+        "title": "My toolbox.",
+        "subtitle": "My current go-to stack for building modern websites and applications, got some more up my sleeve.",
+        "frontend": "Frontend",
+        "backend": "Backend"
+      },
       "journey": {
         "title": "My journey.",
         "subtitle": "My journey from being a finance-wannabe to a developer",

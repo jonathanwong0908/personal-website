@@ -1,3 +1,5 @@
+import FadeIn from "@/components/animation/fade-in";
+import Footer from "@/components/core/footer";
 import Navbar from "@/components/core/navbar";
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { locales } from "@/config/intl";
@@ -49,6 +51,9 @@ export default function RootLayout({
               </header>
               {children}
             </div>
+            <FadeIn delay={0.5}>
+              <Footer />
+            </FadeIn>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
