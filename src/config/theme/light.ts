@@ -10,8 +10,8 @@ export default {
       inverted: colors.slate[950],
     },
     textColor: {
-      display: colors.slate[800],
-      body: colors.slate[600],
+      display: colors.slate[900],
+      body: colors.slate[800],
       muted: colors.slate[500],
       subdued: colors.slate[400],
       "display-inverted": colors.slate[50],
