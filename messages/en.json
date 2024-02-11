@@ -12,9 +12,14 @@
     "about": {
       "title": "About Me.",
       "paragraph": "Coming from a marketing background, I transitioned into frontend development driven by my passion for creating engaging websites and apps that captivate users and guide them effortlessly. I'm continuously exploring design trends and using new technologies.",
-      "toolsTitle": "My go to tools.",
+      "toolsTitle": "My toolbox.",
+      "toolsSubtitle": "My current go to stack for building modern websites and applications, got some more up my sleeve.",
       "frontend": "Frontend",
-      "backend": "Backend"
+      "backend": "Backend",
+      "projectsTitle": "Projects.",
+      "projectsSubtitle": "Large scale projects under construction",
+      "journeyTitle": "My journey.",
+      "journeySubtitle": ""
     }
   }
 }
