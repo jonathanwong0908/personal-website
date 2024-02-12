@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../logo";
 import FadeIn from "../../animation/fade-in";
-import Link from "next/link";
+import AnimatedLink from "@/components/animation/animated-link";
 
 const Navbar = () => {
   return (
@@ -9,15 +9,14 @@ const Navbar = () => {
       <nav className="flex items-start justify-between p-4 md:p-8">
         <Logo />
         <div className="flex flex-col gap-2">
-          <Link href="/contact" target="_blank">
-            Contact
-          </Link>
-          <Link
-            href="/resume/jonathan-wong-frontend-developer.pdf"
-            target="_blank"
-          >
-            Resume
-          </Link>
+          {navbarLinks.map((link, index) => (
+            <AnimatedLink
+              key={index}
+              href={link.href}
+              target={link.target}
+              text={link.text}
+            />
+          ))}
         </div>
       </nav>
     </FadeIn>
@@ -25,3 +24,21 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const navbarLinks: NavbarLink[] = [
+  {
+    href: "/contact",
+    text: "Contact",
+  },
+  {
+    href: "/resume/jonathan-wong-frontend-developer.pdf",
+    target: "_blank",
+    text: "Resume",
+  },
+];
+
+type NavbarLink = {
+  href: string;
+  text: string;
+  target?: string;
+};
