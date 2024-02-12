@@ -44,8 +44,8 @@ export default function RootLayout({
           >
             <ReactQueryProvider>
               <div className="relative flex min-h-screen flex-col justify-between bg-background">
-                <div>
-                  <Navbar />
+                <div className="">
+                  <Navbar locale={locale} />
                   {children}
                   <LocaleSwitcher locale={locale} />
                 </div>

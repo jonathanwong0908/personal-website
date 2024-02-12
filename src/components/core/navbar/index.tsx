@@ -4,8 +4,13 @@ import FadeIn from "../../animation/fade-in";
 import Link from "next/link";
 import HoverRollText from "@/components/animation/hover-roll-text";
 import { getTranslations } from "next-intl/server";
+import { LocaleString } from "@/config/intl";
 
-const Navbar = async () => {
+type NavbarProps = {
+  locale: LocaleString;
+};
+
+const Navbar = async ({ locale }: NavbarProps) => {
   const t = await getTranslations("navigation");
 
   return (
