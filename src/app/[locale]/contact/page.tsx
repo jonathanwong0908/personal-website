@@ -5,6 +5,7 @@ import ContactAside from "@/components/contact/aside";
 import ContactForm from "@/components/contact/form";
 import SubmitSuccess from "@/components/contact/form-submit-success";
 import PageHeading from "@/components/contact/heading";
+import { LocaleString } from "@/config/intl";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -12,9 +13,15 @@ type ContactPageProps = {
   searchParams: {
     status?: string;
   };
+  params: {
+    locale: LocaleString;
+  };
 };
 
-const ContactPage = ({ searchParams }: ContactPageProps) => {
+const ContactPage = ({
+  searchParams,
+  params: { locale },
+}: ContactPageProps) => {
   const isSuccess = searchParams?.status === "success";
 
   return (
@@ -24,7 +31,7 @@ const ContactPage = ({ searchParams }: ContactPageProps) => {
           <SubmitSuccess />
         ) : (
           <>
-            <PageHeading />
+            <PageHeading locale={locale} />
             <div className="flex flex-col justify-start gap-20 pt-16 md:flex-row  md:pt-20 lg:pt-28">
               <div className="w-full max-w-3xl">
                 <FadeIn delay={1.5}>

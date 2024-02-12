@@ -3,21 +3,24 @@ import Logo from "../logo";
 import FadeIn from "../../animation/fade-in";
 import Link from "next/link";
 import HoverRollText from "@/components/animation/hover-roll-text";
+import { getTranslations } from "next-intl/server";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const t = await getTranslations("navigation");
+
   return (
     <header className="absolute top-0 z-40 w-full">
       <FadeIn delay={1.5} direction="down">
         <nav className="flex items-start justify-between p-4 md:p-8">
           <Logo />
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-end gap-2">
             {navbarLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link?.href}
                 className="text-md md:text-lg"
               >
-                <HoverRollText text={link?.text} isStagger />
+                <HoverRollText text={t(link?.text)} isStagger />
               </Link>
             ))}
           </div>
@@ -32,12 +35,12 @@ export default Navbar;
 const navbarLinks: NavbarLink[] = [
   {
     href: "/contact",
-    text: "Contact",
+    text: "contact",
   },
   {
     href: "/resume/jonathan-wong-frontend-developer.pdf",
     target: "_blank",
-    text: "Resume",
+    text: "resume",
   },
 ];
 

@@ -3,7 +3,17 @@
     "title": "ジョナサン - フロントエンドエンジニア"
   },
   "footer": {
-    "name": "ジョナサン・"
+    "name": "ジョナサン・",
+    "contact": "連絡",
+    "resume": "履歴書",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "navigation": {
+    "contact": "連絡",
+    "resume": "履歴書",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "home": {
     "hero": {
@@ -14,29 +24,29 @@
     },
     "about": {
       "title": "私について・",
-      "paragraph": "Coming from a marketing background, I transitioned into frontend development driven by my passion for creating engaging websites and apps that captivate users and guide them effortlessly. I'm continuously exploring design trends and using new technologies.",
+      "paragraph": "マーケティング出身の私は、優れたデジタルユーザーエクスペリアンスを体験し、魅了的なウエブサイトやアプリを開発したいという情熱に駆られて、フロントエンド開発に移転しました。私は最新のテクノロジーやデザインのトレンドを常に探求しています。",
       "tools": {
         "title": "よく使うツール・",
-        "subtitle": "My current go-to stack for building modern websites and applications, got some more up my sleeve.",
+        "subtitle": "私が現在最新のウエブサイトやアプリを作るために頼りにしているテクノロジー、他にもあります",
         "frontend": "フロントエンド",
         "backend": "バックエンド"
       },
       "journey": {
-        "title": "My journey.",
-        "subtitle": "My journey from being a finance-wannabe to a developer",
-        "frontendDeveloper": "Frontend Developer",
-        "frontendDeveloperDescription": "Hard grinded to learn the depths of programming",
-        "marketingExecutive": "Marketing Executive",
-        "marketingExecutiveDescription": "Experienced the power of good UI/UX",
-        "financeIntern": "Finance Intern",
-        "financeInternDescription": "Entered the world of coding with VBA"
+        "title": "今までの旅・",
+        "subtitle": "金融で働きたかったからソフトウエアエンジニアになるまでの道のり",
+        "frontendDeveloper": "フロントエンドエンジニア",
+        "frontendDeveloperDescription": "プログラミングの奥深さを体験しました",
+        "marketingExecutive": "デジタルマーケター",
+        "marketingExecutiveDescription": "優れたユーザーエクスペリエンスの力を学びました",
+        "financeIntern": "ファイナンスインターン",
+        "financeInternDescription": "VBAでコーディングの旅が始まりました"
       },
       "projects": {
-        "title": "Projects.",
-        "subtitle": "Large scale projects I build in my free time",
-        "project1": "Manabo",
-        "project1Description": "A platform that offers and discusses Japanese language learning materials",
-        "building": "Under construction"
+        "title": "プロジェクト・",
+        "subtitle": "私の暇つぶし",
+        "project1": "マナボ",
+        "project1Description": "日本語の学習教材を提供し、話し合うプラットフォーム",
+        "building": "工事中"
       }
     },
     "contact": {
@@ -44,17 +54,18 @@
     }
   },
   "contact": {
-    "title": "Leave me a message!",
-    "furtherEnquiries": "Further enquiries",
-    "socials": "Socials",
+    "title": "メッセージコーナー",
+    "furtherEnquiries": "お問い合わせ",
+    "socials": "SNS",
     "form": {
-      "name": "Your name",
-      "namePlaceholder": "Ohtani Shohei",
-      "email": "Email",
-      "message": "Message",
-      "messagePlaceholder": "I'm a big fan of your projects",
-      "submit": "Send",
-      "sending": "Sending...",
+      "name": "お名前",
+      "namePlaceholder": "安住新一郎",
+      "email": "メールアドレス",
+      "emailPlaceholder": "azumi@tbs.jp",
+      "message": "メッセージ",
+      "messagePlaceholder": "ビッグファンです",
+      "submit": "送信",
+      "sending": "送信中...",
       "successTitle": "Thank you for your message!",
       "successMessage": "I will try my best to get back to you ASAP.",
       "home": "Home"

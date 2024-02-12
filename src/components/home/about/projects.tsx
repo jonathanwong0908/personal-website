@@ -22,7 +22,7 @@ const Projects = async () => {
                   {t(project.title)}
                 </h3>
                 <span className="text-muted-inverted">-</span>
-                <span className="text-muted-inverted md:text-md rounded-full border px-3 py-1 text-sm uppercase">
+                <span className="text-body-inverted md:text-md rounded-full border px-3 py-1 text-sm uppercase">
                   {t(project.status)}
                 </span>
               </div>

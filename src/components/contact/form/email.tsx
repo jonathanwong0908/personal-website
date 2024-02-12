@@ -33,7 +33,7 @@ const EmailField = ({ control, error }: FieldProps) => {
             <Input
               {...field}
               className="text-md px-5 py-3.5 font-semibold md:text-lg"
-              placeholder="ohtani@dodgers.com"
+              placeholder={t("emailPlaceholder")}
               type="email"
               value={field.value || ""}
             />

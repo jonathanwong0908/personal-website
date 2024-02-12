@@ -6,8 +6,13 @@ import FadeIn from "../../animation/fade-in";
 import Toolbox from "./toolbox";
 import Projects from "./projects";
 import Journey from "./journey";
+import { LocaleString } from "@/config/intl";
 
-const About = async () => {
+type AboutProps = {
+  locale: LocaleString;
+};
+
+const About = async ({ locale }: AboutProps) => {
   const t = await getTranslations("home.about");
 
   return (
@@ -28,6 +33,7 @@ const About = async () => {
               aria-hidden
               className="text-body-inverted w-full max-w-3xl text-lg md:text-2xl"
               text={t("paragraph")}
+              locale={locale}
             />
           </div>
 

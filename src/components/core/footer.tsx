@@ -16,7 +16,7 @@ const Footer = async () => {
               <div className="flex gap-4 md:gap-12" key={section?.name}>
                 {section?.links?.map((link, index) => (
                   <Link href={link?.href} key={index}>
-                    <HoverRollText text={link?.text} isStagger />
+                    <HoverRollText text={t(link?.text)} isStagger />
                   </Link>
                 ))}
               </div>
@@ -40,12 +40,12 @@ const footerLinks: FooterItem[] = [
       {
         href: "https://www.linkedin.com/in/jonathan-thomas-wong/",
         target: "_blank",
-        text: "LinkedIn",
+        text: "linkedin",
       },
       {
         href: "https://github.com/jonathanwong0908",
         target: "_blank",
-        text: "Github",
+        text: "github",
       },
     ],
   },
@@ -54,12 +54,12 @@ const footerLinks: FooterItem[] = [
     links: [
       {
         href: "/contact",
-        text: "Contact",
+        text: "contact",
       },
       {
         href: "/resume/jonathan-wong-frontend-developer.pdf",
         target: "_blank",
-        text: "Resume",
+        text: "resume",
       },
     ],
   },

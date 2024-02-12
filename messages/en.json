@@ -3,7 +3,17 @@
     "title": "Jonathan - Frontend Developer"
   },
   "footer": {
-    "name": "Jonathan W"
+    "name": "Jonathan W",
+    "contact": "Contact",
+    "resume": "Resume",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "navigation": {
+    "contact": "Contact",
+    "resume": "Resume",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
   },
   "home": {
     "hero": {

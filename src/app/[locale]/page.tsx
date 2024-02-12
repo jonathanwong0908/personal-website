@@ -1,7 +1,4 @@
-import Cursor from "@/components/animation/cursor";
 import SmoothScrollWrapper from "@/components/animation/smooth-scroll-wrapper";
-import LocaleSwitcher from "@/components/core/locale-switcher";
-import ThemeSwitcher from "@/components/core/theme-switcher";
 import About from "@/components/home/about";
 import Contact from "@/components/home/contact";
 import Hero from "@/components/home/hero";
@@ -18,7 +15,7 @@ export default function Home({ params: { locale } }: HomePageProps) {
     <SmoothScrollWrapper>
       <main>
         <Hero locale={locale} />
-        <About />
+        <About locale={locale} />
         <Contact />
       </main>
     </SmoothScrollWrapper>
