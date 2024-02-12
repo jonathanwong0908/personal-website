@@ -17,7 +17,10 @@ const Contact = () => {
               className="text-5xl font-bold uppercase text-display md:text-8xl lg:text-9xl"
               once
             />
-            <LinkUnderline className="h-[3px] bg-inverted" duration={0.8} />
+            <LinkUnderline
+              className="bg-background-inverted h-[3px]"
+              duration={0.8}
+            />
           </Link>
         </div>
       </div>

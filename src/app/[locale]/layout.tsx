@@ -1,6 +1,7 @@
 import FadeIn from "@/components/animation/fade-in";
 import Footer from "@/components/core/footer";
 import Navbar from "@/components/core/navbar";
+import ReactQueryProvider from "@/components/core/react-query-provider";
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { locales } from "@/config/intl";
 import { generalSans } from "@/lib/fonts";
@@ -45,11 +46,15 @@ export default function RootLayout({
             defaultTheme="dark"
             themes={["dark", "light"]}
           >
-            <div className="relative min-h-screen bg-background">
-              <Navbar />
-              {children}
-            </div>
-            <Footer />
+            <ReactQueryProvider>
+              <div className="relative flex min-h-screen flex-col justify-between bg-background">
+                <div>
+                  <Navbar />
+                  {children}
+                </div>
+                <Footer />
+              </div>
+            </ReactQueryProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

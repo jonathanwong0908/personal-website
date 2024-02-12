@@ -1,27 +1,42 @@
+import FadeIn from "@/components/animation/fade-in";
 import SmoothScrollWrapper from "@/components/animation/smooth-scroll-wrapper";
 import StaggeredText from "@/components/animation/staggered-text";
+import ContactAside from "@/components/contact/aside";
+import ContactForm from "@/components/contact/form";
+import SubmitSuccess from "@/components/contact/form-submit-success";
+import PageHeading from "@/components/contact/heading";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
-const ContactPage = async () => {
-  const t = await getTranslations("contact");
+type ContactPageProps = {
+  searchParams: {
+    status?: string;
+  };
+};
+
+const ContactPage = ({ searchParams }: ContactPageProps) => {
+  const isSuccess = searchParams?.status === "success";
 
   return (
     <SmoothScrollWrapper>
-      <main className="mx-auto max-w-7xl px-4 pt-40 md:px-8 md:pt-48 lg:pt-60">
-        <h1 className="sr-only">{t("title")}</h1>
-        <h1
-          aria-hidden
-          className="flex w-full max-w-3xl flex-col text-4xl font-bold uppercase text-display md:gap-4 md:text-7xl lg:text-8xl"
-        >
-          <StaggeredText
-            text={t("title")}
-            el="span"
-            once
-            delayChildren={0.4}
-            staggerChildren={0.04}
-          />
-        </h1>
+      <main className="mx-auto max-w-7xl px-4 pt-40 md:px-8 md:py-48 xl:px-0">
+        {isSuccess ? (
+          <SubmitSuccess />
+        ) : (
+          <>
+            <PageHeading />
+            <div className="flex flex-col justify-start gap-20 pt-16 md:flex-row  md:pt-20 lg:pt-28">
+              <div className="w-full max-w-3xl">
+                <FadeIn delay={1.5}>
+                  <ContactForm />
+                </FadeIn>
+              </div>
+              <FadeIn delay={2}>
+                <ContactAside />
+              </FadeIn>
+            </div>
+          </>
+        )}
       </main>
     </SmoothScrollWrapper>
   );

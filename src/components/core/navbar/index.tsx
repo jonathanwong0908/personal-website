@@ -1,7 +1,8 @@
 import React from "react";
 import Logo from "../logo";
 import FadeIn from "../../animation/fade-in";
-import AnimatedLink from "@/components/animation/animated-link";
+import Link from "next/link";
+import HoverRollText from "@/components/animation/hover-roll-text";
 
 const Navbar = () => {
   return (
@@ -11,12 +12,13 @@ const Navbar = () => {
           <Logo />
           <div className="flex flex-col gap-2">
             {navbarLinks.map((link, index) => (
-              <AnimatedLink
+              <Link
                 key={index}
-                href={link.href}
-                target={link.target}
-                text={link.text}
-              />
+                href={link?.href}
+                className="text-md md:text-lg"
+              >
+                <HoverRollText text={link?.text} isStagger />
+              </Link>
             ))}
           </div>
         </nav>

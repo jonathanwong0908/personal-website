@@ -44,6 +44,20 @@
     }
   },
   "contact": {
-    "title": "Leave me a message!"
+    "title": "Leave me a message!",
+    "furtherEnquiries": "Further enquiries",
+    "socials": "Socials",
+    "form": {
+      "name": "Your name",
+      "namePlaceholder": "Ohtani Shohei",
+      "email": "Email",
+      "message": "Message",
+      "messagePlaceholder": "I'm a big fan of your projects",
+      "submit": "Send",
+      "sending": "Sending...",
+      "successTitle": "Thank you for your message!",
+      "successMessage": "I will try my best to get back to you ASAP.",
+      "home": "Home"
+    }
   }
 }

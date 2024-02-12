@@ -11,7 +11,7 @@ const About = async () => {
   const t = await getTranslations("home.about");
 
   return (
-    <ScrollScaleContainer className="rounded-lg bg-inverted px-4 py-8 md:p-12 lg:px-16 lg:py-24">
+    <ScrollScaleContainer className="bg-background-inverted rounded-lg px-4 py-8 md:p-12 lg:px-16 lg:py-24">
       <section id="about-section h-full">
         <h2 className="sr-only">{t("title")}</h2>
         <p className="sr-only">{t("paragraph")}</p>

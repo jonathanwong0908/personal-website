@@ -1,20 +1,26 @@
 "use client";
 
-import Link, { LinkProps } from "next/link";
 import React from "react";
 import { stagger, useAnimate } from "framer-motion";
 
-interface AnimatedLinkProps extends LinkProps {
+interface HoverRollTextProps {
   text: string;
   className?: string;
-  target?: string;
+  isStagger?: boolean;
 }
 
-const AnimatedLink = ({ text, className, href, target }: AnimatedLinkProps) => {
+const HoverRollText = (props: HoverRollTextProps) => {
+  const { text, className, isStagger } = props;
   const [scope, animate] = useAnimate();
 
   const onHover = () => {
-    animate([[".letter", { y: -24 }, { duration: 0.4, delay: stagger(0.02) }]]);
+    animate([
+      [
+        ".letter",
+        { y: -24 },
+        { duration: 0.4, delay: isStagger ? stagger(0.02) : 0 },
+      ],
+    ]);
   };
 
   const onMouseLeave = () => {
@@ -22,13 +28,11 @@ const AnimatedLink = ({ text, className, href, target }: AnimatedLinkProps) => {
   };
 
   return (
-    <Link
-      href={href}
-      className={className}
+    <span
       ref={scope}
       onMouseEnter={onHover}
       onMouseLeave={onMouseLeave}
-      target={target ?? "_self"}
+      className={className}
     >
       <span className="sr-only">{text}</span>
       <span aria-hidden className="flex h-6 overflow-hidden">
@@ -42,8 +46,8 @@ const AnimatedLink = ({ text, className, href, target }: AnimatedLinkProps) => {
           </span>
         ))}
       </span>
-    </Link>
+    </span>
   );
 };
 
-export default AnimatedLink;
+export default HoverRollText;

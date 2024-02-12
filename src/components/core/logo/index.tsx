@@ -11,7 +11,7 @@ const Logo = () => {
         <Link href="/" className="">
           <span
             className={cn(
-              "grid aspect-square w-16 place-items-center rounded-full border-2 text-3xl font-bold text-display",
+              "border-inverted grid aspect-square w-16 place-items-center rounded-full border-[3px] text-3xl font-bold text-display",
             )}
           >
             <LogoRotateWrapper>ジ</LogoRotateWrapper>
