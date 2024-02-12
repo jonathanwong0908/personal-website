@@ -39,8 +39,8 @@ export default function RootLayout({
           <ThemeProvider
             storageKey="theme"
             attribute="class"
-            defaultTheme="dark"
-            themes={["dark", "light"]}
+            defaultTheme="light"
+            themes={["light"]}
           >
             <ReactQueryProvider>
               <div className="relative flex min-h-screen flex-col justify-between bg-background">
