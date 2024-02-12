@@ -37,7 +37,11 @@ const NameField = ({ control, error }: FieldProps) => {
               value={field.value || ""}
             />
           </FormControl>
-          <FormMessage className="text-warning text-md md:text-lg" />
+          {error ? (
+            <p className="text-warning md:text-md text-sm font-semibold">
+              {t(error?.message)}
+            </p>
+          ) : null}
         </FormItem>
       )}
     />

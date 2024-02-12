@@ -72,7 +72,9 @@
       "sending": "Sending...",
       "successTitle": "Thank you for your message!",
       "successMessage": "I will try my best to get back to you ASAP.",
-      "home": "Home"
+      "home": "Home",
+      "Required": "Required",
+      "invalidEmail": "Invalid email"
     }
   },
   "notFound": {

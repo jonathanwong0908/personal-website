@@ -12,12 +12,11 @@ import { Button } from "@/components/ui/button";
 import NameField from "./name";
 import MessageField from "./message";
 import HoverRollText from "@/components/animation/hover-roll-text";
-import { SendHorizontal } from "lucide-react";
 
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email").min(1, "Email is required"),
-  message: z.string().min(1, "Message is required"),
+  name: z.string(),
+  email: z.string().email("invalidEmail").min(1, "required"),
+  message: z.string(),
 });
 
 export type ContactFormType = z.infer<typeof schema>;
