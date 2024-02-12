@@ -16,11 +16,9 @@ type HomePageProps = {
 export default function Home({ params: { locale } }: HomePageProps) {
   return (
     <SmoothScrollWrapper>
-      <div className="relative">
+      <div>
         <Hero locale={locale} />
-        <div className="bg-background">
-          <About />
-        </div>
+        <About />
         <Contact />
       </div>
     </SmoothScrollWrapper>

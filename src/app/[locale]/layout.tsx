@@ -45,15 +45,11 @@ export default function RootLayout({
             defaultTheme="dark"
             themes={["dark", "light"]}
           >
-            <div className="relative min-h-screen">
-              <header className="absolute top-0 z-40 w-full">
-                <Navbar />
-              </header>
+            <div className="relative min-h-screen bg-background">
+              <Navbar />
               {children}
             </div>
-            <FadeIn delay={0.5}>
-              <Footer />
-            </FadeIn>
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

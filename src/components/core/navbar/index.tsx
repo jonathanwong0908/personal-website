@@ -5,21 +5,23 @@ import AnimatedLink from "@/components/animation/animated-link";
 
 const Navbar = () => {
   return (
-    <FadeIn delay={1.5} direction="down">
-      <nav className="flex items-start justify-between p-4 md:p-8">
-        <Logo />
-        <div className="flex flex-col gap-2">
-          {navbarLinks.map((link, index) => (
-            <AnimatedLink
-              key={index}
-              href={link.href}
-              target={link.target}
-              text={link.text}
-            />
-          ))}
-        </div>
-      </nav>
-    </FadeIn>
+    <header className="absolute top-0 z-40 w-full">
+      <FadeIn delay={1.5} direction="down">
+        <nav className="flex items-start justify-between p-4 md:p-8">
+          <Logo />
+          <div className="flex flex-col gap-2">
+            {navbarLinks.map((link, index) => (
+              <AnimatedLink
+                key={index}
+                href={link.href}
+                target={link.target}
+                text={link.text}
+              />
+            ))}
+          </div>
+        </nav>
+      </FadeIn>
+    </header>
   );
 };
 
