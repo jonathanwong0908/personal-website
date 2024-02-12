@@ -47,7 +47,6 @@ export default function RootLayout({
                 <div className="">
                   <Navbar locale={locale} />
                   {children}
-                  <LocaleSwitcher locale={locale} />
                 </div>
                 <Footer />
               </div>

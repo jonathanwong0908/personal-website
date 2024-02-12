@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "@/navigation";
 import React from "react";
 import MagneticWrapper from "../animation/magnetic-wrapper";
 import FadeIn from "../animation/fade-in";
+import { cn } from "@/lib/utils";
 
 interface LanguageSwitcherInterface {
   className?: string;
@@ -31,19 +32,17 @@ const LocaleSwitcher = ({ className, locale }: LanguageSwitcherInterface) => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 mix-blend-difference md:bottom-8 md:right-8">
-      <FadeIn delay={1.5}>
-        <MagneticWrapper>
-          <Button
-            size="sm"
-            onClick={changeLanguage}
-            className="aspect-square w-16 rounded-full bg-background text-xl font-bold mix-blend-difference"
-          >
-            {locale == "jp" ? "英" : "日"}
-          </Button>
-        </MagneticWrapper>
-      </FadeIn>
-    </div>
+    <MagneticWrapper>
+      <Button
+        size="sm"
+        onClick={changeLanguage}
+        className={cn(
+          "border-inverted grid aspect-square w-16 place-items-center rounded-full border-[3px] text-3xl font-bold text-display",
+        )}
+      >
+        {locale == "jp" ? "英" : "日"}
+      </Button>
+    </MagneticWrapper>
   );
 };
 

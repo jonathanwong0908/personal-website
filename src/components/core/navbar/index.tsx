@@ -5,6 +5,7 @@ import Link from "next/link";
 import HoverRollText from "@/components/animation/hover-roll-text";
 import { getTranslations } from "next-intl/server";
 import { LocaleString } from "@/config/intl";
+import LocaleSwitcher from "../locale-switcher";
 
 type NavbarProps = {
   locale: LocaleString;
@@ -17,7 +18,10 @@ const Navbar = async ({ locale }: NavbarProps) => {
     <header className="absolute top-0 z-40 w-full">
       <FadeIn delay={1.5} direction="down">
         <nav className="flex items-start justify-between p-4 md:p-8">
-          <Logo />
+          <div className="flex gap-4">
+            <Logo />
+            <LocaleSwitcher locale={locale} />
+          </div>
           <div className="flex flex-col items-end gap-2">
             {navbarLinks.map((link, index) => (
               <Link
