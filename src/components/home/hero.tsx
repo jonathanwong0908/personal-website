@@ -21,7 +21,10 @@ const Hero = async ({ locale }: Props) => {
         )}
       >
         <h1 className="sr-only">{t("title")}</h1>
-        <h1 className="flex w-full flex-col text-4xl font-bold uppercase md:gap-4 md:text-8xl lg:text-9xl">
+        <h1
+          aria-hidden
+          className="flex w-full flex-col text-4xl font-bold uppercase md:gap-4 md:text-8xl lg:text-9xl"
+        >
           <StaggeredText
             text={t("titleTop")}
             el="span"

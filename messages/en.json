@@ -42,6 +42,12 @@
         "project1Description": "A platform that offers and discusses Japanese language learning materials",
         "building": "Under construction"
       }
+    },
+    "contact": {
+      "getInTouch": "Get in touch!"
     }
+  },
+  "contact": {
+    "title": "Leave me a message!"
   }
 }

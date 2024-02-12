@@ -16,11 +16,11 @@ type HomePageProps = {
 export default function Home({ params: { locale } }: HomePageProps) {
   return (
     <SmoothScrollWrapper>
-      <div>
+      <main>
         <Hero locale={locale} />
         <About />
         <Contact />
-      </div>
+      </main>
     </SmoothScrollWrapper>
   );
 }
