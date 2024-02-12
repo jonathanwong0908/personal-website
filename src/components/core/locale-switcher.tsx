@@ -31,7 +31,7 @@ const LocaleSwitcher = ({ className, locale }: LanguageSwitcherInterface) => {
   }
 
   return (
-    <div className="fixed bottom-8 right-8 mix-blend-difference">
+    <div className="fixed bottom-4 right-4 mix-blend-difference md:bottom-8 md:right-8">
       <FadeIn delay={1.5}>
         <MagneticWrapper>
           <Button
