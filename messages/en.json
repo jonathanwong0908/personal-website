@@ -74,5 +74,10 @@
       "successMessage": "I will try my best to get back to you ASAP.",
       "home": "Home"
     }
+  },
+  "notFound": {
+    "title": "You're lost.",
+    "subtitle": "404, the page you're looking for does not exist.",
+    "home": "Home"
   }
 }

@@ -66,9 +66,14 @@
       "messagePlaceholder": "ビッグファンです",
       "submit": "送信",
       "sending": "送信中...",
-      "successTitle": "Thank you for your message!",
-      "successMessage": "I will try my best to get back to you ASAP.",
-      "home": "Home"
+      "successTitle": "メッセージありがとうございます",
+      "successMessage": "すぐ返事するので、少々お待ちください",
+      "home": "ホームページへ"
     }
+  },
+  "notFound": {
+    "title": "誰しも道に迷うことがある",
+    "subtitle": "404エラー、探しているページが存在しません",
+    "home": "ホームページへ"
   }
 }
