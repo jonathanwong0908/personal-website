@@ -1,9 +1,10 @@
 import FadeIn from "@/components/animation/fade-in";
 import Footer from "@/components/core/footer";
+import LocaleSwitcher from "@/components/core/locale-switcher";
 import Navbar from "@/components/core/navbar";
 import ReactQueryProvider from "@/components/core/react-query-provider";
 import { ThemeProvider } from "@/components/core/theme-provider";
-import { locales } from "@/config/intl";
+import { LocaleString, locales } from "@/config/intl";
 import { generalSans } from "@/lib/fonts";
 import type { Metadata } from "next";
 import { NextIntlClientProvider, useMessages } from "next-intl";
@@ -26,7 +27,7 @@ export async function generateMetadata() {
 
 type RootLayoutProps = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: LocaleString };
 };
 
 export default function RootLayout({
@@ -51,6 +52,7 @@ export default function RootLayout({
                 <div>
                   <Navbar />
                   {children}
+                  <LocaleSwitcher locale={locale} />
                 </div>
                 <Footer />
               </div>
