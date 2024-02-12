@@ -65,6 +65,7 @@
       "name": "Your name",
       "namePlaceholder": "Ohtani Shohei",
       "email": "Email",
+      "emailPlaceholder": "ohtani@dodgers.com",
       "message": "Message",
       "messagePlaceholder": "I'm a big fan of your projects",
       "submit": "Send",
