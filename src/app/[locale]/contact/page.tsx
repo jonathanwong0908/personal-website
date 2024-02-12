@@ -6,7 +6,7 @@ import ContactForm from "@/components/contact/form";
 import SubmitSuccess from "@/components/contact/form-submit-success";
 import PageHeading from "@/components/contact/heading";
 import { LocaleString } from "@/config/intl";
-import { getTranslations } from "next-intl/server";
+import { unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
 
 type ContactPageProps = {
@@ -22,6 +22,8 @@ const ContactPage = ({
   searchParams,
   params: { locale },
 }: ContactPageProps) => {
+  unstable_setRequestLocale(locale);
+
   const isSuccess = searchParams?.status === "success";
 
   return (

@@ -1,4 +1,3 @@
-import FadeIn from "@/components/animation/fade-in";
 import Footer from "@/components/core/footer";
 import LocaleSwitcher from "@/components/core/locale-switcher";
 import Navbar from "@/components/core/navbar";
@@ -6,12 +5,8 @@ import ReactQueryProvider from "@/components/core/react-query-provider";
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { LocaleString, locales } from "@/config/intl";
 import { generalSans } from "@/lib/fonts";
-import type { Metadata } from "next";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
