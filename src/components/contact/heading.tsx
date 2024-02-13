@@ -22,6 +22,7 @@ const PageHeading = async ({ locale }: PageHeadingProps) => {
         )}
       >
         <StaggeredText
+          key="contact-page-heading"
           text={t("title")}
           el="span"
           once
