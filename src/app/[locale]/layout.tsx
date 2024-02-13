@@ -7,6 +7,7 @@ import { LocaleString, locales } from "@/config/intl";
 import { generalSans } from "@/lib/fonts";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { Toaster } from "sonner";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -50,6 +51,7 @@ export default function RootLayout({
                 </div>
                 <Footer />
               </div>
+              <Toaster />
             </ReactQueryProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

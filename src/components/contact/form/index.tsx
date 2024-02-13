@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useContact } from "@/hooks/contact";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import NameField from "./name";
 import MessageField from "./message";
 import HoverRollText from "@/components/animation/hover-roll-text";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string(),
@@ -41,6 +42,12 @@ const ContactForm = () => {
   } = form;
 
   const { mutate, isPending, error } = useContact();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(t("error"));
+    }
+  }, [error]);
 
   const onSubmit = (data: ContactFormType) => {
     mutate(data);
