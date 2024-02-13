@@ -30,7 +30,7 @@ const Navbar = async ({ locale }: NavbarProps) => {
                     href={link?.href}
                     target={link?.target ?? "_self"}
                     key={index}
-                    className="text-md md:text-lg"
+                    className="text-sm md:text-lg"
                   >
                     <span className="sr-only">{t(link?.text)}</span>
                     <HoverRollText text={t(link?.text)} isStagger />
@@ -41,7 +41,7 @@ const Navbar = async ({ locale }: NavbarProps) => {
                 <Link
                   key={index}
                   href={link?.href}
-                  className="text-md md:text-lg"
+                  className="text-sm md:text-lg"
                 >
                   <span className="sr-only">{t(link?.text)}</span>
                   <HoverRollText text={t(link?.text)} isStagger />
