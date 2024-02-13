@@ -17,7 +17,25 @@ export async function generateMetadata() {
   const t = await getTranslations("rootLayout");
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_FRONTEND_URL as string),
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_FRONTEND_URL,
+      languages: {
+        "en-US": "/en",
+        "ja-JP": "/jp",
+      },
+    },
     title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: process.env.NEXT_PUBLIC_FRONTEND_URL,
+      type: "website",
+      images: [
+        { url: "/seo/og-image.png", width: 1200, height: 630, alt: t("title") },
+      ],
+    },
   };
 }
 
