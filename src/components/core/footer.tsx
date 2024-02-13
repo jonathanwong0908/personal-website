@@ -17,11 +17,31 @@ const Footer = async () => {
             </p>
             {footerLinks?.map((section) => (
               <div className="flex gap-4 md:gap-12" key={section?.name}>
-                {section?.links?.map((link, index) => (
-                  <Link href={link?.href} key={index}>
-                    <HoverRollText text={t(link?.text)} isStagger />
-                  </Link>
-                ))}
+                {section?.links?.map((link, index) => {
+                  if (link?.a) {
+                    return (
+                      <a
+                        href={link?.href}
+                        target={link?.target ?? "_self"}
+                        key={link?.text}
+                        className="text-md md:text-lg"
+                      >
+                        <span className="sr-only">{t(link?.text)}</span>
+                        <HoverRollText text={t(link?.text)} isStagger />
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      href={link?.href}
+                      key={index}
+                      className="text-md md:text-lg"
+                    >
+                      <HoverRollText text={t(link?.text)} isStagger />
+                    </Link>
+                  );
+                })}
               </div>
             ))}
           </div>
@@ -60,6 +80,7 @@ const footerLinks: FooterItem[] = [
         href: "/resume/jonathan-wong-frontend-developer.pdf",
         target: "_blank",
         text: "resume",
+        a: true,
       },
     ],
   },
@@ -74,4 +95,5 @@ type FooterLink = {
   href: string;
   target?: string;
   text: string;
+  a?: boolean;
 };
