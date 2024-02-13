@@ -37,7 +37,7 @@ const LocaleSwitcher = ({ className, locale }: LanguageSwitcherInterface) => {
         size="sm"
         onClick={changeLanguage}
         className={cn(
-          "border-inverted grid aspect-square w-16 place-items-center rounded-full border-[3px] text-3xl font-bold text-display",
+          "border-inverted grid aspect-square w-12 place-items-center rounded-full border-[2px] text-xl font-semibold text-display md:w-16 md:text-3xl",
         )}
       >
         {locale == "jp" ? "英" : "日"}

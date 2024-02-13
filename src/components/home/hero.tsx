@@ -13,7 +13,7 @@ const Hero = async ({ locale }: Props) => {
   const t = await getTranslations("home.hero");
 
   return (
-    <div className="relative flex min-h-screen items-end justify-center bg-background text-display md:items-center">
+    <div className="relative flex min-h-screen items-end justify-center bg-background pb-16 text-display md:items-center md:pb-0">
       <div
         className={cn(
           "flex w-full flex-col gap-4 px-4 py-8 md:gap-16",
