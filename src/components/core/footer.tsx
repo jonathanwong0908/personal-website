@@ -15,35 +15,37 @@ const Footer = async () => {
             <p>
               {t("name")} © {new Date().getFullYear()}
             </p>
-            {footerLinks?.map((section) => (
-              <div className="flex gap-4 md:gap-12" key={section?.name}>
-                {section?.links?.map((link, index) => {
-                  if (link?.a) {
+            <div className="flex items-center justify-between gap-32">
+              {footerLinks?.map((section) => (
+                <div className="flex gap-4 md:gap-12" key={section?.name}>
+                  {section?.links?.map((link, index) => {
+                    if (link?.a) {
+                      return (
+                        <a
+                          href={link?.href}
+                          target={link?.target ?? "_self"}
+                          key={link?.text}
+                          className="text-md md:text-lg"
+                        >
+                          <span className="sr-only">{t(link?.text)}</span>
+                          <HoverRollText text={t(link?.text)} isStagger />
+                        </a>
+                      );
+                    }
+
                     return (
-                      <a
+                      <Link
                         href={link?.href}
-                        target={link?.target ?? "_self"}
-                        key={link?.text}
+                        key={index}
                         className="text-md md:text-lg"
                       >
-                        <span className="sr-only">{t(link?.text)}</span>
                         <HoverRollText text={t(link?.text)} isStagger />
-                      </a>
+                      </Link>
                     );
-                  }
-
-                  return (
-                    <Link
-                      href={link?.href}
-                      key={index}
-                      className="text-md md:text-lg"
-                    >
-                      <HoverRollText text={t(link?.text)} isStagger />
-                    </Link>
-                  );
-                })}
-              </div>
-            ))}
+                  })}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </FadeIn>

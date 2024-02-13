@@ -14,7 +14,7 @@ const Contact = () => {
             <StaggeredText
               text={"Get in touch!"}
               el="h4"
-              className="text-5xl font-bold uppercase text-display md:text-8xl lg:text-9xl"
+              className="text-4xl font-bold uppercase text-display md:text-8xl lg:text-9xl"
               once
             />
             <LinkUnderline

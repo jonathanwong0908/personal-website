@@ -28,7 +28,7 @@ const ContactPage = ({
 
   return (
     <SmoothScrollWrapper>
-      <main className="mx-auto max-w-7xl px-4 pt-40 md:px-8 md:py-48 xl:px-0">
+      <main className="mx-auto max-w-7xl px-4 py-40 md:px-8 md:py-48 xl:px-0">
         {isSuccess ? (
           <SubmitSuccess />
         ) : (
