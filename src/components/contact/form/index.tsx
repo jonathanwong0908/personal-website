@@ -59,12 +59,12 @@ const ContactForm = () => {
           <div>
             <Button
               type="submit"
-              className="bg-secondary-inverted text-display-inverted flex rounded-lg p-0 text-lg font-semibold"
+              className="bg-secondary-inverted text-display-inverted text-md flex rounded-lg p-0 font-semibold md:text-lg"
               disabled={isPending}
             >
               <HoverRollText
                 text={t(isPending ? "sending" : "submit")}
-                className="grid w-36 place-content-center py-4 "
+                className="grid w-24 place-content-center py-3 md:w-28 md:py-4 "
               />
             </Button>
           </div>

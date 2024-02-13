@@ -34,16 +34,14 @@ const ContactPage = ({
         ) : (
           <>
             <PageHeading locale={locale} />
-            <div className="flex flex-col justify-start gap-20 pt-16 md:flex-row  md:pt-20 lg:pt-28">
-              <div className="w-full max-w-3xl">
-                <FadeIn delay={1.5}>
+            <FadeIn delay={1.5}>
+              <div className="flex flex-col justify-start gap-20 pt-16 md:flex-row  md:pt-20 lg:pt-28">
+                <div className="w-full max-w-3xl">
                   <ContactForm />
-                </FadeIn>
-              </div>
-              <FadeIn delay={2}>
+                </div>
                 <ContactAside />
-              </FadeIn>
-            </div>
+              </div>
+            </FadeIn>
           </>
         )}
       </main>
