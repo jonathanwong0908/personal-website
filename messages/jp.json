@@ -3,6 +3,10 @@
     "title": "ジョナサン - フロントエンドエンジニア",
     "description": "私ついて少し紹介します"
   },
+  "contactLayout": {
+    "title": "ジョナサン - 連絡",
+    "description": "メッセージコーナー"
+  },
   "footer": {
     "name": "ジョナサン・",
     "contact": "連絡",

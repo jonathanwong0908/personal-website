@@ -3,6 +3,10 @@
     "title": "Jonathan - Frontend Developer",
     "description": "A lil bit about myself"
   },
+  "contactLayout": {
+    "title": "Jonathan - Get in touch",
+    "description": "Leave me a message!"
+  },
   "footer": {
     "name": "Jonathan W",
     "contact": "Contact",
