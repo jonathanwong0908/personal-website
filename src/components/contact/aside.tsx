@@ -25,14 +25,15 @@ const ContactAside = async () => {
         </h2>
         <div className="grid gap-2">
           {socialLinks?.map((link, index) => (
-            <Link
-              href={link?.href}
-              className="text-md text-body md:text-lg"
-              target={link?.target ?? "_self"}
-              key={index}
-            >
-              <HoverRollText text={link?.text} />
-            </Link>
+            <div key={index} className="flex">
+              <Link
+                href={link?.href}
+                className="text-md text-body md:text-lg"
+                target={link?.target ?? "_self"}
+              >
+                <HoverRollText text={link?.text} />
+              </Link>
+            </div>
           ))}
         </div>
       </div>
