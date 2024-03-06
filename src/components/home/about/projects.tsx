@@ -1,5 +1,5 @@
 import { Link } from "@/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -29,7 +29,7 @@ const Projects = async () => {
                   {t(project.title)}
                 </h3>
                 <span className="text-muted-inverted">-</span>
-                <span className="md:text-md rounded-full border px-2 py-1 text-xs uppercase text-body-inverted md:text-sm">
+                <span className="md:text-md rounded-full border px-2.5 py-1 text-xs uppercase text-body-inverted md:text-sm">
                   {t(project.status)}
                 </span>
               </div>
@@ -47,9 +47,11 @@ const Projects = async () => {
                 ))}
               </ul>
             </div>
-            <span className="flex items-center gap-2 text-muted-inverted transition duration-300 group-hover:translate-x-2 group-hover:text-body-inverted">
-              Demo
-              <ArrowUpRight />
+            <span className="flex items-center gap-2 text-muted-inverted transition group-hover:text-body-inverted">
+              <span>Demo</span>
+              <span className="transition duration-300 group-hover:translate-x-2">
+                <ArrowRight />
+              </span>
             </span>
           </Link>
         ))}
