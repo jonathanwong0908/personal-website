@@ -12,18 +12,40 @@ const Footer = async () => {
       <FadeIn delay={0.5}>
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 md:flex-row md:justify-between md:px-8 xl:px-0">
           <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-start md:gap-32">
-            <p>
+            <p className="text-sm md:text-lg">
               {t("name")} © {new Date().getFullYear()}
             </p>
-            {footerLinks?.map((section) => (
-              <div className="flex gap-4 md:gap-12" key={section?.name}>
-                {section?.links?.map((link, index) => (
-                  <Link href={link?.href} key={index}>
-                    <HoverRollText text={t(link?.text)} isStagger />
-                  </Link>
-                ))}
-              </div>
-            ))}
+            <div className="flex items-center justify-between md:gap-32">
+              {footerLinks?.map((section) => (
+                <div className="flex gap-4 md:gap-12" key={section?.name}>
+                  {section?.links?.map((link, index) => {
+                    if (link?.a) {
+                      return (
+                        <a
+                          href={link?.href}
+                          target={link?.target ?? "_self"}
+                          key={link?.text}
+                          className="text-sm md:text-lg"
+                        >
+                          <span className="sr-only">{t(link?.text)}</span>
+                          <HoverRollText text={t(link?.text)} isStagger />
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <Link
+                        href={link?.href}
+                        key={index}
+                        className="text-sm md:text-lg"
+                      >
+                        <HoverRollText text={t(link?.text)} isStagger />
+                      </Link>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </FadeIn>
@@ -60,6 +82,7 @@ const footerLinks: FooterItem[] = [
         href: "/resume/jonathan-wong-frontend-developer.pdf",
         target: "_blank",
         text: "resume",
+        a: true,
       },
     ],
   },
@@ -74,4 +97,5 @@ type FooterLink = {
   href: string;
   target?: string;
   text: string;
+  a?: boolean;
 };

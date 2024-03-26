@@ -97,7 +97,7 @@ const Character = ({ range, progress, text }: CharacterProps) => {
   const opacity = useTransform(progress, range, [0.2, 1]);
 
   return (
-    <motion.span className="" style={{ opacity }}>
+    <motion.span className="inline-block" style={{ opacity }}>
       {text}
     </motion.span>
   );

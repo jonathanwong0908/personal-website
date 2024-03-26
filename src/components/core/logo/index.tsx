@@ -6,19 +6,17 @@ import LogoRotateWrapper from "./rotate-wrapper";
 
 const Logo = () => {
   return (
-    <div className="relative grid aspect-square w-16 place-items-center rounded-full">
-      <MagneticWrapper>
-        <Link href="/" className="">
-          <span
-            className={cn(
-              "border-inverted grid aspect-square w-16 place-items-center rounded-full border-[3px] text-3xl font-bold text-display",
-            )}
-          >
-            <LogoRotateWrapper>ジ</LogoRotateWrapper>
-          </span>
-        </Link>
-      </MagneticWrapper>
-    </div>
+    <MagneticWrapper>
+      <Link href="/" className="">
+        <span
+          className={cn(
+            "border-inverted grid aspect-square w-12 place-items-center rounded-full border-[2px] text-xl font-semibold text-display md:w-16 md:text-3xl",
+          )}
+        >
+          <LogoRotateWrapper>ジ</LogoRotateWrapper>
+        </span>
+      </Link>
+    </MagneticWrapper>
   );
 };
 

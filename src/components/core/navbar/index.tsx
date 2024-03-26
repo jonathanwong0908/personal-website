@@ -23,15 +23,31 @@ const Navbar = async ({ locale }: NavbarProps) => {
             <LocaleSwitcher locale={locale} />
           </div>
           <div className="flex flex-col items-end gap-2">
-            {navbarLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link?.href}
-                className="text-md md:text-lg"
-              >
-                <HoverRollText text={t(link?.text)} isStagger />
-              </Link>
-            ))}
+            {navbarLinks.map((link, index) => {
+              if (link?.a)
+                return (
+                  <a
+                    href={link?.href}
+                    target={link?.target ?? "_self"}
+                    key={index}
+                    className="text-sm md:text-lg"
+                  >
+                    <span className="sr-only">{t(link?.text)}</span>
+                    <HoverRollText text={t(link?.text)} isStagger />
+                  </a>
+                );
+
+              return (
+                <Link
+                  key={index}
+                  href={link?.href}
+                  className="text-sm md:text-lg"
+                >
+                  <span className="sr-only">{t(link?.text)}</span>
+                  <HoverRollText text={t(link?.text)} isStagger />
+                </Link>
+              );
+            })}
           </div>
         </nav>
       </FadeIn>
@@ -50,6 +66,7 @@ const navbarLinks: NavbarLink[] = [
     href: "/resume/jonathan-wong-frontend-developer.pdf",
     target: "_blank",
     text: "resume",
+    a: true,
   },
 ];
 
@@ -57,4 +74,5 @@ type NavbarLink = {
   href: string;
   text: string;
   target?: string;
+  a?: boolean;
 };

@@ -1,6 +1,11 @@
 {
   "rootLayout": {
-    "title": "Jonathan - Frontend Developer"
+    "title": "Jonathan - Frontend Developer",
+    "description": "A lil bit about myself"
+  },
+  "contactLayout": {
+    "title": "Jonathan - Get in touch",
+    "description": "Leave me a message!"
   },
   "footer": {
     "name": "Jonathan W",
@@ -48,7 +53,7 @@
       "projects": {
         "title": "Projects.",
         "subtitle": "Large scale projects I build in my free time",
-        "project1": "Manabo",
+        "project1": "Manabrew",
         "project1Description": "A platform that offers and discusses Japanese language learning materials",
         "building": "Under construction"
       }
@@ -74,7 +79,8 @@
       "successMessage": "I will try my best to get back to you ASAP.",
       "home": "Home",
       "Required": "Required",
-      "invalidEmail": "Invalid email"
+      "invalidEmail": "Invalid email",
+      "error": "Something went wrong, please try again later."
     }
   },
   "notFound": {

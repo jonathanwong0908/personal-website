@@ -15,6 +15,7 @@ const SubmitSuccess = async () => {
       <h1
         aria-hidden
         className="flex w-full max-w-3xl flex-col text-4xl font-bold uppercase text-display md:gap-4 md:text-7xl lg:text-8xl"
+        key="success-title"
       >
         <StaggeredText
           text={t("successTitle")}

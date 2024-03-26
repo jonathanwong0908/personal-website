@@ -1,3 +1,5 @@
+import { Link } from "@/navigation";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -6,41 +8,52 @@ const Projects = async () => {
   return (
     <div className="mx-auto grid max-w-7xl gap-8 md:gap-12">
       <div className="space-y-4 lg:space-y-6">
-        <h2 className="text-display-inverted text-3xl font-bold uppercase md:text-5xl lg:text-6xl">
+        <h2 className="text-3xl font-bold uppercase text-display-inverted md:text-5xl lg:text-6xl">
           {t("title")}
         </h2>
-        <p className="text-body-inverted max-w-xl text-lg md:text-2xl">
+        <p className="max-w-xl text-lg text-body-inverted md:text-2xl">
           {t("subtitle")}
         </p>
       </div>
       <div>
         {projects.map((project) => (
-          <div key={project.title} className="">
+          <Link
+            href={project?.link ?? "/"}
+            key={project?.title}
+            className="group flex items-center justify-between gap-8"
+            target="_blank"
+          >
             <div className="grid gap-2">
               <div className="flex items-center gap-2 md:gap-4">
-                <h3 className="text-display-inverted text-xl font-bold uppercase md:text-3xl">
+                <h3 className="text-xl font-bold uppercase text-display-inverted md:text-3xl">
                   {t(project.title)}
                 </h3>
                 <span className="text-muted-inverted">-</span>
-                <span className="text-body-inverted md:text-md rounded-full border px-3 py-1 text-sm uppercase">
+                <span className="md:text-md rounded-full border px-2.5 py-1 text-xs uppercase text-body-inverted md:text-sm">
                   {t(project.status)}
                 </span>
               </div>
-              <p className="text-body-inverted text-lg md:text-xl">
+              <p className="text-lg text-body-inverted md:text-xl">
                 {t(project.description)}
               </p>
               <ul className="flex gap-4">
                 {project.tech.map((t) => (
                   <li
                     key={t}
-                    className="text-muted-inverted text-sm md:text-lg"
+                    className="text-sm text-muted-inverted md:text-lg"
                   >
                     {t}
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
+            <span className="flex items-center gap-2 text-muted-inverted transition group-hover:text-body-inverted">
+              <span>Demo</span>
+              <span className="transition duration-300 group-hover:translate-x-2">
+                <ArrowRight />
+              </span>
+            </span>
+          </Link>
         ))}
       </div>
     </div>
@@ -53,8 +66,8 @@ const projects = [
   {
     title: "project1",
     description: "project1Description",
-    tech: ["Next.js", "Supabase", "Directus (CMS)", "S3"],
+    tech: ["Next.js", "Postgres", "Directus (CMS)", "S3"],
     status: "building",
-    link: "",
+    link: "https://manabo.vercel.app/en",
   },
 ];
