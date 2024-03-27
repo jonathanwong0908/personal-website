@@ -1,5 +1,5 @@
 import { Link } from "@/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -23,14 +23,13 @@ const Projects = async () => {
             className="group flex items-center justify-between gap-8"
             target="_blank"
           >
-            <div className="grid gap-2">
-              <div className="flex items-center gap-2 md:gap-4">
+            <div className="grid gap-4 md:gap-2">
+              <div className="flex gap-2">
                 <h3 className="text-xl font-bold uppercase text-display-inverted md:text-3xl">
                   {t(project.title)}
                 </h3>
-                <span className="text-muted-inverted">-</span>
-                <span className="md:text-md rounded-full border px-2.5 py-1 text-xs uppercase text-body-inverted md:text-sm">
-                  {t(project.status)}
+                <span className="text-muted-inverted transition duration-300 group-hover:-translate-y-1.5 group-hover:translate-x-1.5 group-hover:text-display-inverted">
+                  <ArrowUpRight size={16} />
                 </span>
               </div>
               <p className="text-lg text-body-inverted md:text-xl">
@@ -47,12 +46,6 @@ const Projects = async () => {
                 ))}
               </ul>
             </div>
-            <span className="flex items-center gap-2 text-muted-inverted transition group-hover:text-body-inverted">
-              <span>Demo</span>
-              <span className="transition duration-300 group-hover:translate-x-2">
-                <ArrowRight />
-              </span>
-            </span>
           </Link>
         ))}
       </div>
@@ -66,8 +59,8 @@ const projects = [
   {
     title: "project1",
     description: "project1Description",
-    tech: ["Next.js", "Postgres", "Directus (CMS)", "S3"],
+    tech: ["Next.js", "Postgres", "Directus (CMS)"],
     status: "building",
-    link: "https://manabo.vercel.app/en",
+    link: "https://japanese-learning-website-jonathanwong0908.vercel.app/en",
   },
 ];
