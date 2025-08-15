@@ -1,0 +1,17 @@
+{
+  "name": "@workspace/db",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "npx convex dev",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "convex": "^1.25.4"
+  },
+  "devDependencies": {
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*"
+  }
+}
