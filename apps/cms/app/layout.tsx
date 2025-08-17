@@ -9,6 +9,12 @@ import {
   SignedOut,
   SignInButton,
 } from "@clerk/nextjs";
+import {
+  SidebarProvider,
+  SidebarTrigger,
+} from "@workspace/ui/components/sidebar";
+import { AppSidebar } from "@/components/layout/app-sidebar";
+import { Header } from "@/components/layout/header";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -29,14 +35,22 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
+          className={`${fontSans.variable} ${fontMono.variable} font-mono antialiased `}
         >
           <ThemeProvider>
             <ConvexClientProvider>
               <SignedOut>
                 <SignInButton mode="modal" />
               </SignedOut>
-              <SignedIn>{children}</SignedIn>
+              <SignedIn>
+                <SidebarProvider>
+                  <AppSidebar />
+                  <main className="w-full">
+                    <Header />
+                    <div className="p-4">{children}</div>
+                  </main>
+                </SidebarProvider>
+              </SignedIn>
             </ConvexClientProvider>
           </ThemeProvider>
         </body>
