@@ -1,14 +1,11 @@
-import { Button } from "@workspace/ui/components/button";
-import { Plus } from "lucide-react";
+import { AddArticleSheet } from "@/components/articles/add-article-sheet";
 
 export default function ArticlesPage() {
   return (
     <div>
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Articles</h1>
-        <Button size="icon" className="size-7">
-          <Plus />
-        </Button>
+        <AddArticleSheet />
       </div>
     </div>
   );
