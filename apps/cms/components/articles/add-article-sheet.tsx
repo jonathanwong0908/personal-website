@@ -21,7 +21,7 @@ export function AddArticleSheet() {
         <SheetHeader className="border-b">
           <SheetTitle>New Article</SheetTitle>
         </SheetHeader>
-        <div className="px-4">
+        <div className="px-4 h-full">
           <AddArticleForm />
         </div>
       </SheetContent>
