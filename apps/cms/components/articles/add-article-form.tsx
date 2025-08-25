@@ -14,8 +14,8 @@ import {
 import { Button } from "@workspace/ui/components/button";
 
 const schema = z.object({
-  title: z.string().min(1),
-  content: z.string().min(1),
+  title: z.string().min(1, "Title is required"),
+  content: z.string().optional().nullable(),
 });
 
 type ArticleFormData = z.infer<typeof schema>;
@@ -43,31 +43,31 @@ export function AddArticleForm({ onClose }: AddArticleFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col h-full"
       >
-        <FormField
-          control={form.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="sr-only">Title</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  className="bg-transparent border-none dark:bg-transparent p-0 shadow-none focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0 md:text-5xl h-auto tracking-tighter"
-                  placeholder="Title"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="h-full">
+        <div className="h-full px-4 flex flex-col gap-6">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="sr-only">Title</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    className="bg-transparent border-none dark:bg-transparent p-0 shadow-none focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0 md:text-5xl h-auto tracking-tighter"
+                    placeholder="Title"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="content"
             render={({ field }) => (
               <FormItem className="h-full">
                 <FormLabel className="sr-only">Content</FormLabel>
-                <FormControl className="h-full">
+                <FormControl className="">
                   <Controller
                     name="content"
                     control={form.control}
@@ -83,12 +83,14 @@ export function AddArticleForm({ onClose }: AddArticleFormProps) {
                     )}
                   />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        {/* <Button type="submit">Save</Button> */}
+        <div className="flex gap-2 justify-end border-t p-4">
+          <Button type="submit">Save as draft</Button>
+          <Button type="submit">Save</Button>
+        </div>
       </form>
     </Form>
   );

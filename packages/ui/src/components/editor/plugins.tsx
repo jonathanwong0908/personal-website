@@ -53,7 +53,7 @@ export function Plugins() {
   };
 
   return (
-    <div className="relative h-full min-h-full border">
+    <div className="relative min-h-72 border">
       {/* toolbar plugins */}
       <ToolbarPlugin>
         {({ blockType }) => (

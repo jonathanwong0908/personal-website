@@ -29,10 +29,13 @@ export function AddArticleSheet() {
         </Button>
       </SheetTrigger>
       <SheetContent showCloseButton={false}>
-        <SheetHeader className="border-b">
+        <SheetHeader className="border-b flex items-center justify-between flex-row">
           <SheetTitle>New Article</SheetTitle>
+          <Button onClick={() => setIsOpen(false)} variant="outline" size="sm">
+            Discard
+          </Button>
         </SheetHeader>
-        <div className="px-4 h-full">
+        <div className="h-full">
           <AddArticleForm onClose={() => setIsOpen(false)} />
         </div>
       </SheetContent>
