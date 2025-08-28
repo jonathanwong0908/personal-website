@@ -1,11 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter, Libre_Baskerville } from "next/font/google";
 import "@workspace/ui/globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { Header } from "@/components/layout/header";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
-const fontSans = Geist({
+const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -13,6 +13,12 @@ const fontSans = Geist({
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+});
+
+const fontSerif = Libre_Baskerville({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: "400",
 });
 
 export default function RootLayout({
@@ -23,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
+        className={`${fontSans.variable} ${fontMono.variable} ${fontSerif.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider>
           <ThemeProvider>
