@@ -5,7 +5,9 @@
   ],
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
+    "",
     "^@workspace/ui/(.*)$",
+    "",
     "^@/components/(.*)$",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",

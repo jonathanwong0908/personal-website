@@ -1,6 +1,8 @@
-import { Geist_Mono, Inter, Libre_Baskerville } from "next/font/google";
 import "@workspace/ui/globals.css";
+
 import { NextIntlClientProvider } from "next-intl";
+import { Geist_Mono, Inter, Libre_Baskerville } from "next/font/google";
+
 import { Header } from "@/components/layout/header";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
