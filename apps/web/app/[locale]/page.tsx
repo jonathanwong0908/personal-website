@@ -1,70 +1,91 @@
+import { Pump } from "basehub/react-pump";
+import { RichText } from "basehub/react-rich-text";
 import { getTranslations } from "next-intl/server";
+
 import { Separator } from "@workspace/ui/components/separator";
 
 export default async function Page() {
   const t = await getTranslations("HomePage");
 
   return (
-    <div className="flex flex-col gap-12">
-      <div className="flex flex-col gap-6">
-        <h1 className="font-serif text-3xl font-bold tracking-tight">
-          Jonathan
-        </h1>
-        <p className="text-foreground/50 text-lg leading-5 tracking-tight">
-          Software Engineer, Skill Gatherer, Volleyball Player
-        </p>
-      </div>
-      <Separator className="bg-border/10" />
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-3">
-          <h2 className="font-serif text-xl font-bold tracking-tight">
-            Experience
-          </h2>
-          <p className="text-foreground/50 text-sm font-medium leading-5 tracking-tight">
-            From finance wannabe to keyboard smasher
-          </p>
-        </div>
-        <div className="w-full tracking-tight">
-          <h4 className="">
-            Software Engineer{" "}
-            <span className="text-foreground/50 text-sm">{"'2024"}</span>
-          </h4>
-          <h4 className="">
-            Frontend Programmer{" "}
-            <span className="text-foreground/50 text-sm">{"'2023"}</span>
-          </h4>
-          <h4 className="">
-            Marketing Executive{" "}
-            <span className="text-foreground/50 text-sm">{"'2022"}</span>
-          </h4>
-          <h4 className="">
-            Finance Intern{" "}
-            <span className="text-foreground/50 text-sm">{"'2020"}</span>
-          </h4>
-        </div>
-      </div>
-      <Separator className="bg-border/10" />
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-3">
-          <h2 className="font-serif text-xl font-bold tracking-tight">
-            Tech Stack
-          </h2>
-          <p className="text-foreground/50 text-sm font-medium leading-5 tracking-tight">
-            Just things I like to use to ship fast
-          </p>
-        </div>
-        <div>
-          <div className="flex w-full items-center justify-between tracking-tight">
-            <h4 className="">Next.js</h4>
+    <Pump
+      queries={[
+        { __typename: true },
+        {
+          homePage: {
+            header: { json: { content: true } },
+            experience: { json: { content: true } },
+            techStack: { json: { content: true } },
+          },
+        },
+      ]}
+    >
+      {async ([data, homePage]) => {
+        "use server";
+        return (
+          <div className="flex flex-col gap-12">
+            <div>
+              <RichText
+                components={{
+                  h1: (props) => (
+                    <h1
+                      className="text-foreground pb-6 font-serif text-3xl font-bold tracking-tight"
+                      {...props}
+                    />
+                  ),
+                  h2: (props) => (
+                    <h2
+                      className="text-foreground/80 text-lg leading-5 tracking-tight"
+                      {...props}
+                    />
+                  ),
+                }}
+              >
+                {homePage.homePage.header?.json.content}
+              </RichText>
+            </div>
+            <Separator className="bg-border/20" />
+            <div>
+              <RichText
+                components={{
+                  h3: (props) => (
+                    <h3
+                      className="pb-6 font-serif text-xl font-bold tracking-tight"
+                      {...props}
+                    />
+                  ),
+                  u: (props) => (
+                    <span className="text-foreground/50 text-sm" {...props} />
+                  ),
+                }}
+              >
+                {homePage.homePage.experience?.json.content}
+              </RichText>
+            </div>
+            <Separator className="bg-border/20" />
+            <div>
+              <RichText
+                components={{
+                  h3: (props) => (
+                    <h3
+                      className="pb-3 font-serif text-xl font-bold tracking-tight"
+                      {...props}
+                    />
+                  ),
+                  h4: (props) => (
+                    <h4
+                      className="text-foreground/70 pb-6 tracking-tight"
+                      {...props}
+                    />
+                  ),
+                }}
+              >
+                {homePage.homePage.techStack?.json.content}
+              </RichText>
+            </div>
           </div>
-          <div className="flex w-full items-center justify-between tracking-tight">
-            <h4 className="">Shadcn UI</h4>
-          </div>
-          <div className="flex w-full items-center justify-between tracking-tight">
-            <h4 className="">Convex</h4>
-          </div>
-        </div>
-      </div>
-    </div>
+        );
+      }}
+    </Pump>
   );
 }

@@ -18,6 +18,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+  , "basehub-types.d.ts", "basehub.config.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["NODE_ENV", "CONVEX_DEPLOYMENT", "CONVEX_URL"],
+  "globalEnv": ["NODE_ENV", "CONVEX_DEPLOYMENT", "CONVEX_URL", "BASEHUB_TOKEN"],
   "ui": "tui",
   "tasks": {
     "build": {
