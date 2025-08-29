@@ -1,4 +1,4 @@
-import { FileText, Home } from "lucide-react";
+import { FileText, Home, Tag } from "lucide-react";
 
 import {
   Sidebar,
@@ -23,6 +23,11 @@ const items = [
     url: "/articles",
     icon: FileText,
   },
+  {
+    title: "Tags",
+    url: "/tags",
+    icon: Tag,
+  },
 ];
 
 export function AppSidebar() {
@@ -30,7 +35,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          {/* <SidebarGroupLabel>Application</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

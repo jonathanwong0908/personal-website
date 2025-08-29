@@ -8,7 +8,8 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "convex": "^1.25.4"
+    "convex": "^1.25.4",
+    "@workspace/shared": "workspace:*"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
