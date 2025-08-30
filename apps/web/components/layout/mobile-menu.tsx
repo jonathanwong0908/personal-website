@@ -14,6 +14,7 @@ import { HeaderLinks } from "./header-links";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+
   return (
     <Drawer open={open} onOpenChange={setOpen} direction="top">
       <DrawerTrigger>

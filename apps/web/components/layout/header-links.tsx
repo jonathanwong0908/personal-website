@@ -9,10 +9,10 @@ const headerLinks = [
     label: "Me",
     href: "/",
   },
-  {
-    label: "Projects",
-    href: "/projects",
-  },
+  // {
+  //   label: "Projects",
+  //   href: "/projects",
+  // },
   {
     label: "Life",
     href: "/life",
