@@ -209,7 +209,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (ArticleCategories | ArticleCategoriesItem | ArticleTags | ArticleTagsItem | Articles | ArticlesItem | HomePage | _AgentStart | articleCategoriesItem_AsList | articleTagsItem_AsList | articlesItem_AsList) & { __isUnion?: true }
+export type BlockDocument = (ArticleCategories | ArticleCategoriesItem | ArticleTags | ArticleTagsItem | Articles | ArticlesItem | Books | BooksItem | HomePage | _AgentStart | articleCategoriesItem_AsList | articleTagsItem_AsList | articlesItem_AsList | booksItem_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -268,7 +268,7 @@ export interface BlockImage {
     __typename: 'BlockImage'
 }
 
-export type BlockList = (ArticleCategories | ArticleTags | Articles | articleCategoriesItem_AsList | articleTagsItem_AsList | articlesItem_AsList) & { __isUnion?: true }
+export type BlockList = (ArticleCategories | ArticleTags | Articles | Books | articleCategoriesItem_AsList | articleTagsItem_AsList | articlesItem_AsList | booksItem_AsList) & { __isUnion?: true }
 
 export interface BlockOgImage {
     height: Scalars['Int']
@@ -294,6 +294,45 @@ export interface BlockVideo {
     width: Scalars['Int']
     __typename: 'BlockVideo'
 }
+
+export interface Books {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (BooksItem | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: BooksItem[]
+    __typename: 'Books'
+}
+
+export interface BooksItem {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight[] | null)
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    audioBookLink: (Scalars['String'] | null)
+    author: (Scalars['String'] | null)
+    eBookLink: (Scalars['String'] | null)
+    printLink: (Scalars['String'] | null)
+    __typename: 'BooksItem'
+}
+
+export type BooksItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'audioBookLink__ASC' | 'audioBookLink__DESC' | 'author__ASC' | 'author__DESC' | 'eBookLink__ASC' | 'eBookLink__DESC' | 'printLink__ASC' | 'printLink__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface Content {
     html: Scalars['String']
@@ -420,6 +459,7 @@ export interface Query {
     articleCategories: ArticleCategories
     articleTags: ArticleTags
     articles: Articles
+    books: Books
     homePage: HomePage
     __typename: 'Query'
 }
@@ -584,6 +624,7 @@ export interface _components {
     articleCategoriesItem: articleCategoriesItem_AsList
     articleTagsItem: articleTagsItem_AsList
     articlesItem: articlesItem_AsList
+    booksItem: booksItem_AsList
     __typename: '_components'
 }
 
@@ -642,6 +683,25 @@ export interface articlesItem_AsList {
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items: ArticlesItem[]
     __typename: 'articlesItem_AsList'
+}
+
+export interface booksItem_AsList {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (BooksItem | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: BooksItem[]
+    __typename: 'booksItem_AsList'
 }
 
 export interface ArticleCategoriesGenqlSelection{
@@ -882,11 +942,14 @@ export interface BlockDocumentGenqlSelection{
     on_ArticleTagsItem?: ArticleTagsItemGenqlSelection
     on_Articles?: ArticlesGenqlSelection
     on_ArticlesItem?: ArticlesItemGenqlSelection
+    on_Books?: BooksGenqlSelection
+    on_BooksItem?: BooksItemGenqlSelection
     on_HomePage?: HomePageGenqlSelection
     on__AgentStart?: _AgentStartGenqlSelection
     on_articleCategoriesItem_AsList?: articleCategoriesItem_AsListGenqlSelection
     on_articleTagsItem_AsList?: articleTagsItem_AsListGenqlSelection
     on_articlesItem_AsList?: articlesItem_AsListGenqlSelection
+    on_booksItem_AsList?: booksItem_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockDocument"
 }
@@ -972,9 +1035,11 @@ export interface BlockListGenqlSelection{
     on_ArticleCategories?: ArticleCategoriesGenqlSelection
     on_ArticleTags?: ArticleTagsGenqlSelection
     on_Articles?: ArticlesGenqlSelection
+    on_Books?: BooksGenqlSelection
     on_articleCategoriesItem_AsList?: articleCategoriesItem_AsListGenqlSelection
     on_articleTagsItem_AsList?: articleTagsItem_AsListGenqlSelection
     on_articlesItem_AsList?: articlesItem_AsListGenqlSelection
+    on_booksItem_AsList?: booksItem_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockList"
 }
@@ -1023,6 +1088,65 @@ export interface BlockVideoGenqlSelection{
     __typename?: boolean | number
     __fragmentOn?: "BlockVideo"
 }
+
+export interface BooksGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: BooksItemGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: BooksItemGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "Books"
+}
+
+export interface BooksItemGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlightGenqlSelection
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    audioBookLink?: boolean | number
+    author?: boolean | number
+    eBookLink?: boolean | number
+    printLink?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "BooksItem"
+}
+
+export interface BooksItemFilterInput {AND?: (BooksItemFilterInput | null),OR?: (BooksItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),audioBookLink?: (StringFilter | null),author?: (StringFilter | null),eBookLink?: (StringFilter | null),printLink?: (StringFilter | null)}
+
+export interface BooksItemSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
 
 export interface ContentGenqlSelection{
     html?: { __args: {
@@ -1279,6 +1403,17 @@ export interface QueryGenqlSelection{
     search?: (ArticlesItemSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    books?: (BooksGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (BooksItemFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (BooksItemOrderByEnum | null), 
+    /** Search configuration */
+    search?: (BooksItemSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     homePage?: HomePageGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "Query"
@@ -1511,6 +1646,17 @@ export interface _componentsGenqlSelection{
     search?: (ArticlesItemSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    booksItem?: (booksItem_AsListGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (BooksItemFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (BooksItemOrderByEnum | null), 
+    /** Search configuration */
+    search?: (BooksItemSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
     __fragmentOn?: "_components"
 }
@@ -1593,6 +1739,32 @@ export interface articlesItem_AsListGenqlSelection{
     __fragmentOn?: "articlesItem_AsList"
 }
 
+export interface booksItem_AsListGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: BooksItemGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: BooksItemGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "booksItem_AsList"
+}
+
 export interface FragmentsMap {
   ArticleCategories: {
     root: ArticleCategories,
@@ -1665,6 +1837,14 @@ export interface FragmentsMap {
   BlockVideo: {
     root: BlockVideo,
     selection: BlockVideoGenqlSelection,
+}
+  Books: {
+    root: Books,
+    selection: BooksGenqlSelection,
+}
+  BooksItem: {
+    root: BooksItem,
+    selection: BooksItemGenqlSelection,
 }
   Content: {
     root: Content,
@@ -1785,5 +1965,9 @@ export interface FragmentsMap {
   articlesItem_AsList: {
     root: articlesItem_AsList,
     selection: articlesItem_AsListGenqlSelection,
+}
+  booksItem_AsList: {
+    root: booksItem_AsList,
+    selection: booksItem_AsListGenqlSelection,
 }
 }

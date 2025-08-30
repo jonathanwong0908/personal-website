@@ -35,7 +35,8 @@ export function HeaderLinks({ onLinkClick, className }: HeaderLinksProps) {
           href={link.href}
           className={cn(
             "font-medium",
-            pathname === link.href
+            pathname === link.href ||
+              (pathname.startsWith(link.href) && link.href !== "/")
               ? "text-foreground cursor-default"
               : "text-foreground/50 hover:text-foreground transition-colors",
           )}

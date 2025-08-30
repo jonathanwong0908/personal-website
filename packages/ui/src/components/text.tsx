@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { cn } from "@workspace/ui/lib/utils";
 
-const textVariants = cva("text-foreground", {
+const textVariants = cva("text-foreground tracking-tight", {
   variants: {
     variant: {
       default: "text-foreground",
@@ -15,14 +15,25 @@ const textVariants = cva("text-foreground", {
       lg: "text-lg",
       xl: "text-xl",
     },
+    weight: {
+      default: "font-normal",
+      medium: "font-medium",
+      bold: "font-bold",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+    weight: "default",
   },
 });
 
-function Text({
+export function Text({
   className,
   variant,
   size,
   as,
+  weight,
   ...props
 }: React.ComponentProps<"p"> &
   VariantProps<typeof textVariants> & { as?: React.ElementType }) {
@@ -30,7 +41,7 @@ function Text({
 
   return (
     <Comp
-      className={cn(textVariants({ variant, size, className }))}
+      className={cn(textVariants({ variant, size, weight, className }))}
       {...props}
     />
   );
