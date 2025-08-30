@@ -10,7 +10,7 @@ export default function BooksPage() {
       <div className="flex flex-col gap-6">
         <Heading>Good Reads</Heading>
         <p className="text-foreground/50 text-lg leading-5 tracking-tight">
-          The books that shape how I see the world
+          The books that helped shaping how I see the world
         </p>
       </div>
       <Separator className="bg-border/20" />

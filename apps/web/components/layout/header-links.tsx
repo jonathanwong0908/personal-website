@@ -4,6 +4,8 @@ import { Link, usePathname } from "@/i18n/navigation";
 
 import { cn } from "@workspace/ui/lib/utils";
 
+import { HoverRollText } from "@/components/animation/hover-roll-text";
+
 const headerLinks = [
   {
     label: "Me",
@@ -42,7 +44,7 @@ export function HeaderLinks({ onLinkClick, className }: HeaderLinksProps) {
           )}
           onClick={onLinkClick ?? undefined}
         >
-          {link.label}
+          <HoverRollText text={link.label} isStagger />
         </Link>
       ))}
     </div>

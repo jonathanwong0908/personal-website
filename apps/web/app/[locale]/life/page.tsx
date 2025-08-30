@@ -21,7 +21,7 @@ export default function LifePage() {
             size="lg"
             weight="medium"
           >
-            Books I liked
+            Books I like
           </Text>
         </Link>
       </div>
