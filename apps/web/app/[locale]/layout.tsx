@@ -38,7 +38,7 @@ export default function RootLayout({
             <ConvexClientProvider>
               <div className="relative min-h-svh">
                 <Header />
-                <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-6 gap-5 px-7 sm:px-8 md:grid-cols-12 md:px-10 md:pt-28 lg:px-20">
+                <div className="mx-auto grid min-h-screen max-w-screen-2xl grid-cols-6 gap-5 px-7 pt-10 sm:px-8 md:grid-cols-12 md:px-10 md:pt-28 lg:px-20">
                   <div className="col-start-1 col-end-7 md:col-start-4 md:col-end-12 lg:col-end-10">
                     {children}
                   </div>
