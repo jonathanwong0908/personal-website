@@ -279,7 +279,7 @@ export interface BlockOgImage {
 
 
 /** Rich text block */
-export type BlockRichText = (Content | Experience | Header | TechStack) & { __isUnion?: true }
+export type BlockRichText = (Contact | Content | Experience | Header | TechStack) & { __isUnion?: true }
 
 export interface BlockVideo {
     aspectRatio: Scalars['String']
@@ -333,6 +333,21 @@ export interface BooksItem {
 }
 
 export type BooksItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'audioBookLink__ASC' | 'audioBookLink__DESC' | 'author__ASC' | 'author__DESC' | 'eBookLink__ASC' | 'eBookLink__DESC' | 'printLink__ASC' | 'printLink__DESC' | 'untitled__ASC' | 'untitled__DESC'
+
+export interface Contact {
+    html: Scalars['String']
+    json: ContactRichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Contact'
+}
+
+export interface ContactRichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'ContactRichText'
+}
 
 export interface Content {
     html: Scalars['String']
@@ -394,6 +409,7 @@ export interface HomePage {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
+    contact: (Contact | null)
     experience: (Experience | null)
     header: (Header | null)
     techStack: (TechStack | null)
@@ -474,7 +490,7 @@ export interface RepoSys {
     __typename: 'RepoSys'
 }
 
-export type RichTextJson = (BaseRichTextJson | ContentRichText | ExperienceRichText | HeaderRichText | TechStackRichText) & { __isUnion?: true }
+export type RichTextJson = (BaseRichTextJson | ContactRichText | ContentRichText | ExperienceRichText | HeaderRichText | TechStackRichText) & { __isUnion?: true }
 
 export interface SearchHighlight {
     /** The field/path that was matched (e.g., "title", "body.content") */
@@ -1066,6 +1082,7 @@ export interface BlockRichTextGenqlSelection{
     readingTime?: { __args: {
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
+    on_Contact?: ContactGenqlSelection
     on_Content?: ContentGenqlSelection
     on_Experience?: ExperienceGenqlSelection
     on_Header?: HeaderGenqlSelection
@@ -1147,6 +1164,29 @@ export interface BooksItemSearchInput {
 by?: (Scalars['String'][] | null),
 /** Search query */
 q?: (Scalars['String'] | null)}
+
+export interface ContactGenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: ContactRichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "Contact"
+}
+
+export interface ContactRichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "ContactRichText"
+}
 
 export interface ContentGenqlSelection{
     html?: { __args: {
@@ -1241,6 +1281,7 @@ export interface HomePageGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
+    contact?: ContactGenqlSelection
     experience?: ExperienceGenqlSelection
     header?: HeaderGenqlSelection
     techStack?: TechStackGenqlSelection
@@ -1434,6 +1475,7 @@ export interface RichTextJsonGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     on_BaseRichTextJson?: BaseRichTextJsonGenqlSelection
+    on_ContactRichText?: ContactRichTextGenqlSelection
     on_ContentRichText?: ContentRichTextGenqlSelection
     on_ExperienceRichText?: ExperienceRichTextGenqlSelection
     on_HeaderRichText?: HeaderRichTextGenqlSelection
@@ -1845,6 +1887,14 @@ export interface FragmentsMap {
   BooksItem: {
     root: BooksItem,
     selection: BooksItemGenqlSelection,
+}
+  Contact: {
+    root: Contact,
+    selection: ContactGenqlSelection,
+}
+  ContactRichText: {
+    root: ContactRichText,
+    selection: ContactRichTextGenqlSelection,
 }
   Content: {
     root: Content,
