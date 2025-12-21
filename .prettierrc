@@ -1,7 +1,7 @@
 {
   "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@ianvs/prettier-plugin-sort-imports"
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
   ],
   "tailwindFunctions": ["cn", "cva"],
   "importOrder": [
@@ -15,21 +15,5 @@
     "^[./]"
   ],
   "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
-  "importOrderTypeScriptVersion": "4.4.0",
-  "overrides": [
-    {
-      "files": "*.json.hbs",
-      "options": {
-        "parser": "json",
-        "formatter": "prettier-plugin-packagejson"
-      }
-    },
-    {
-      "files": "*.js.hbs",
-      "options": {
-        "parser": "babel",
-        "formatter": "prettier-plugin-jsdoc-ast"
-      }
-    }
-  ]
+  "importOrderTypeScriptVersion": "4.4.0"
 }
