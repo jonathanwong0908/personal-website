@@ -1,1 +1,0 @@
-export const ARTICLE_CATEGORIES = ["PROJECT", "LIFE"];

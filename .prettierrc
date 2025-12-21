@@ -3,15 +3,17 @@
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
+  "tailwindFunctions": ["cn", "cva"],
   "importOrder": [
+    "^(react/(.*)$)|^(react$)|^(react-native(.*)$)",
+    "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^@workspace/ui/(.*)$",
-    "",
+    "^@/utils/(.*)$",
     "^@/components/(.*)$",
-    "^@/lib/(.*)$",
-    "^@/hooks/(.*)$",
-    "^@/app/(.*)$",
+    "^@/(.*)$",
     "^[./]"
-  ]
+  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "4.4.0"
 }
