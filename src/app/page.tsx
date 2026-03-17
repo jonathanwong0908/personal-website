@@ -7,7 +7,7 @@ export default function Home() {
         <h1 className="text-2xl font-medium tracking-tighter">Jonathan Wong</h1>
         <div className="flex flex-col gap-1 text-sm">
           <p>🧑‍💻 Software Design and Development</p>
-          <p>📍 Hong Kong</p>
+          <p>📍 Nagoya, Japan</p>
         </div>
       </div>
       {/* <LatestThoughts /> */}
