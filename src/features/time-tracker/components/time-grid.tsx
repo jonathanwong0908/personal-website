@@ -1,3 +1,5 @@
+import type { RefObject } from "react"
+
 import { ACTIVITY_BY_ID, SLOTS_PER_DAY } from "../constants"
 import type { SlotKey, SlotMap } from "../types"
 import {
@@ -17,6 +19,8 @@ export type TimeGridProps = {
   activeSlotKey?: SlotKey | null
   selectedKeys?: Set<SlotKey>
   isSelecting?: boolean
+  isPainting?: boolean
+  scrollContainerRef?: RefObject<HTMLDivElement | null>
   onCellPointerDown?: (
     key: SlotKey,
     event: React.PointerEvent<HTMLButtonElement>
@@ -30,12 +34,20 @@ export function TimeGrid({
   activeSlotKey = null,
   selectedKeys = new Set(),
   isSelecting = false,
+  isPainting = false,
+  scrollContainerRef,
   onCellPointerDown,
 }: TimeGridProps) {
   const days = getDaysInMonth(year, month)
 
   return (
-    <div className={cn("overflow-x-auto", isSelecting && "select-none")}>
+    <div
+      ref={scrollContainerRef}
+      className={cn(
+        "overflow-x-auto overscroll-x-contain",
+        (isSelecting || isPainting) && "select-none touch-none"
+      )}
+    >
       <div
         className="inline-grid gap-px"
         style={{

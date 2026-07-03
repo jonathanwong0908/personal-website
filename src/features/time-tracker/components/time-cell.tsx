@@ -23,7 +23,7 @@ export function TimeCell({
       aria-label={activity?.label ?? "Empty slot"}
       onPointerDown={onPointerDown}
       className={cn(
-        "size-7 shrink-0 rounded-sm border text-xs leading-none",
+        "size-7 shrink-0 touch-none rounded-sm border text-xs leading-none",
         isFilled
           ? "border-transparent"
           : "bg-muted border-border/60 hover:bg-muted/80",

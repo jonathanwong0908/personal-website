@@ -3,10 +3,9 @@
 import { useCallback, useRef, useState } from "react"
 
 import type { ActivityPickerAnchorRect } from "../components/activity-picker"
+import { getSlotKeyFromPoint } from "../lib/slot-hit-test"
 import { getSlotKeysInRange } from "../lib/time-utils"
 import type { SlotKey } from "../types"
-
-const SLOT_KEY_ATTR = "data-slot-key"
 
 type UseSlotSelectionOptions = {
   year: number
@@ -61,21 +60,6 @@ function toAnchorRect(element: HTMLElement): ActivityPickerAnchorRect {
     width: rect.width,
     height: rect.height,
   }
-}
-
-function getSlotKeyFromPoint(clientX: number, clientY: number): SlotKey | null {
-  const element = document.elementFromPoint(clientX, clientY)
-  if (!element) {
-    return null
-  }
-
-  const cell = element.closest(`[${SLOT_KEY_ATTR}]`)
-  if (!cell) {
-    return null
-  }
-
-  const key = cell.getAttribute(SLOT_KEY_ATTR)
-  return key ? (key as SlotKey) : null
 }
 
 function removeDocumentListeners() {
@@ -240,11 +224,6 @@ export function useSlotSelection({
   const handlePointerDown = useCallback(
     (key: SlotKey, event: React.PointerEvent<HTMLButtonElement>) => {
       if (event.button !== 0) {
-        return
-      }
-
-      if (event.pointerType !== "mouse") {
-        onClickActivateRef.current(key, toAnchorRect(event.currentTarget))
         return
       }
 
