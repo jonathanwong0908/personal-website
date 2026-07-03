@@ -15,6 +15,7 @@ import {
   type ActivityPickerAnchorRect,
 } from "@/features/time-tracker/components/activity-picker";
 import { MonthNav } from "@/features/time-tracker/components/month-nav";
+import { StatsPanel } from "@/features/time-tracker/components/stats-panel";
 import { TimeGrid } from "@/features/time-tracker/components/time-grid";
 import { useSlotSelection } from "@/features/time-tracker/hooks/use-slot-selection";
 import { useTimeTracker } from "@/features/time-tracker/hooks/use-time-tracker";
@@ -170,15 +171,18 @@ export default function TrackerPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <TimeGrid
-            year={viewYear}
-            month={viewMonth}
-            slots={slots}
-            activeSlotKey={activeSlotKey}
-            selectedKeys={selectedKeys}
-            isSelecting={isSelecting}
-            onCellPointerDown={handlePointerDown}
-          />
+          <StatsPanel year={viewYear} month={viewMonth} slots={slots} />
+          <div className="mt-6">
+            <TimeGrid
+              year={viewYear}
+              month={viewMonth}
+              slots={slots}
+              activeSlotKey={activeSlotKey}
+              selectedKeys={selectedKeys}
+              isSelecting={isSelecting}
+              onCellPointerDown={handlePointerDown}
+            />
+          </div>
           <ActivityPicker
             open={pickerOpen}
             onOpenChange={handlePickerOpenChange}
