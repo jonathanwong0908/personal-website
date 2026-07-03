@@ -3,7 +3,6 @@
 import { useCallback, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,20 +14,22 @@ import {
   ActivityPicker,
   type ActivityPickerAnchorRect,
 } from "@/features/time-tracker/components/activity-picker";
+import { MonthNav } from "@/features/time-tracker/components/month-nav";
 import { TimeGrid } from "@/features/time-tracker/components/time-grid";
 import { useSlotSelection } from "@/features/time-tracker/hooks/use-slot-selection";
 import { useTimeTracker } from "@/features/time-tracker/hooks/use-time-tracker";
+import { shiftMonth } from "@/features/time-tracker/lib/time-utils";
 import type { SlotKey } from "@/features/time-tracker/types";
 
 export default function TrackerPage() {
   const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
+  const [viewYear, setViewYear] = useState(() => now.getFullYear());
+  const [viewMonth, setViewMonth] = useState(() => now.getMonth() + 1);
 
   const { slots, activities, saveStatus, setSlot, clearSlot, setSlots, clearSlots } =
     useTimeTracker({
-      year,
-      month,
+      year: viewYear,
+      month: viewMonth,
     });
 
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -39,11 +40,6 @@ export default function TrackerPage() {
   const [anchorRect, setAnchorRect] = useState<ActivityPickerAnchorRect | null>(
     null
   );
-
-  const monthLabel = new Intl.DateTimeFormat("en", {
-    month: "long",
-    year: "numeric",
-  }).format(now);
 
   const handleClickActivate = useCallback(
     (key: SlotKey, rect: ActivityPickerAnchorRect) => {
@@ -71,8 +67,8 @@ export default function TrackerPage() {
     handlePointerDown,
     clearSelection,
   } = useSlotSelection({
-    year,
-    month,
+    year: viewYear,
+    month: viewMonth,
     onClickActivate: handleClickActivate,
     onSelectionComplete: handleSelectionComplete,
   });
@@ -84,6 +80,20 @@ export default function TrackerPage() {
     setAnchorRect(null);
     clearSelection();
   }, [clearSelection]);
+
+  const goToPreviousMonth = useCallback(() => {
+    closePicker();
+    const next = shiftMonth(viewYear, viewMonth, -1);
+    setViewYear(next.year);
+    setViewMonth(next.month);
+  }, [closePicker, viewMonth, viewYear]);
+
+  const goToNextMonth = useCallback(() => {
+    closePicker();
+    const next = shiftMonth(viewYear, viewMonth, 1);
+    setViewYear(next.year);
+    setViewMonth(next.month);
+  }, [closePicker, viewMonth, viewYear]);
 
   const handlePickerOpenChange = useCallback(
     (open: boolean) => {
@@ -151,15 +161,18 @@ export default function TrackerPage() {
             {saveStatus === "saved" && (
               <Badge variant="outline">Saved</Badge>
             )}
-            <Button variant="outline" disabled>
-              {monthLabel}
-            </Button>
+            <MonthNav
+              year={viewYear}
+              month={viewMonth}
+              onPrevious={goToPreviousMonth}
+              onNext={goToNextMonth}
+            />
           </div>
         </CardHeader>
         <CardContent>
           <TimeGrid
-            year={year}
-            month={month}
+            year={viewYear}
+            month={viewMonth}
             slots={slots}
             activeSlotKey={activeSlotKey}
             selectedKeys={selectedKeys}

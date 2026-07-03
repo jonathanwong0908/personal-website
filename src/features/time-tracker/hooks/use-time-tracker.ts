@@ -51,12 +51,20 @@ export function useTimeTracker({
     }
 
     setSaveStatus("saving")
+    let flushed = false
+    const snapshot = { monthKey, slots }
     const timer = setTimeout(() => {
-      saveMonth(monthKey, slots)
+      saveMonth(snapshot.monthKey, snapshot.slots)
+      flushed = true
       setSaveStatus("saved")
     }, 300)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      if (!flushed) {
+        saveMonth(snapshot.monthKey, snapshot.slots)
+      }
+    }
   }, [slots, monthKey, isLoaded])
 
   const getSlot = useCallback(

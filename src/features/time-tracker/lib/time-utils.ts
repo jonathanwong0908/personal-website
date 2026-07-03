@@ -17,6 +17,19 @@ export function toMonthKey(year: number, month: number): MonthKey {
   return `${year}-${paddedMonth}`
 }
 
+export function shiftMonth(
+  year: number,
+  month: number,
+  delta: number
+): { year: number; month: number } {
+  const date = new Date(year, month - 1 + delta, 1)
+
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+  }
+}
+
 export function formatDateKey(date: Date): string {
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2, "0")
