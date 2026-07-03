@@ -66,3 +66,40 @@ export function parseSlotKey(key: string): {
     date: new Date(year, month - 1, day),
   }
 }
+
+export function getSlotKeysInRange(
+  anchorKey: SlotKey,
+  focusKey: SlotKey,
+  year: number,
+  month: number
+): SlotKey[] {
+  const days = getDaysInMonth(year, month)
+  const dayIndexByKey = new Map(
+    days.map((date, index) => [formatDateKey(date), index])
+  )
+
+  const anchor = parseSlotKey(anchorKey)
+  const focus = parseSlotKey(focusKey)
+
+  const anchorDayIndex = dayIndexByKey.get(anchor.dateKey)
+  const focusDayIndex = dayIndexByKey.get(focus.dateKey)
+
+  if (anchorDayIndex === undefined || focusDayIndex === undefined) {
+    return []
+  }
+
+  const minDay = Math.min(anchorDayIndex, focusDayIndex)
+  const maxDay = Math.max(anchorDayIndex, focusDayIndex)
+  const minSlot = Math.min(anchor.slotIndex, focus.slotIndex)
+  const maxSlot = Math.max(anchor.slotIndex, focus.slotIndex)
+
+  const keys: SlotKey[] = []
+
+  for (let dayIndex = minDay; dayIndex <= maxDay; dayIndex++) {
+    for (let slotIndex = minSlot; slotIndex <= maxSlot; slotIndex++) {
+      keys.push(toSlotKey(days[dayIndex], slotIndex))
+    }
+  }
+
+  return keys
+}

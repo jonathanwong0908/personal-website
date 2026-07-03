@@ -23,6 +23,8 @@ type UseTimeTrackerReturn = {
   getSlot: (key: SlotKey) => string | undefined
   setSlot: (key: SlotKey, activityId: string) => void
   clearSlot: (key: SlotKey) => void
+  setSlots: (keys: SlotKey[], activityId: string) => void
+  clearSlots: (keys: SlotKey[]) => void
 }
 
 export function useTimeTracker({
@@ -30,7 +32,7 @@ export function useTimeTracker({
   month,
 }: UseTimeTrackerOptions): UseTimeTrackerReturn {
   const monthKey = toMonthKey(year, month)
-  const [slots, setSlots] = useState<SlotMap>({})
+  const [slots, setSlotMap] = useState<SlotMap>({})
   const [activities] = useState<Activity[]>(() => [...DEFAULT_ACTIVITIES])
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle")
   const [isLoaded, setIsLoaded] = useState(false)
@@ -39,7 +41,7 @@ export function useTimeTracker({
     setIsLoaded(false)
     setSaveStatus("idle")
     const data = loadMonth(monthKey)
-    setSlots(data ?? {})
+    setSlotMap(data ?? {})
     setIsLoaded(true)
   }, [monthKey])
 
@@ -63,11 +65,11 @@ export function useTimeTracker({
   )
 
   const setSlot = useCallback((key: SlotKey, activityId: string) => {
-    setSlots((prev) => ({ ...prev, [key]: activityId }))
+    setSlotMap((prev) => ({ ...prev, [key]: activityId }))
   }, [])
 
   const clearSlot = useCallback((key: SlotKey) => {
-    setSlots((prev) => {
+    setSlotMap((prev) => {
       if (!(key in prev)) {
         return prev
       }
@@ -75,6 +77,40 @@ export function useTimeTracker({
       const next = { ...prev }
       delete next[key]
       return next
+    })
+  }, [])
+
+  const setSlots = useCallback((keys: SlotKey[], activityId: string) => {
+    if (keys.length === 0) {
+      return
+    }
+
+    setSlotMap((prev) => {
+      const next = { ...prev }
+      for (const key of keys) {
+        next[key] = activityId
+      }
+      return next
+    })
+  }, [])
+
+  const clearSlots = useCallback((keys: SlotKey[]) => {
+    if (keys.length === 0) {
+      return
+    }
+
+    setSlotMap((prev) => {
+      const next = { ...prev }
+      let changed = false
+
+      for (const key of keys) {
+        if (key in next) {
+          delete next[key]
+          changed = true
+        }
+      }
+
+      return changed ? next : prev
     })
   }, [])
 
@@ -87,5 +123,7 @@ export function useTimeTracker({
     getSlot,
     setSlot,
     clearSlot,
+    setSlots,
+    clearSlots,
   }
 }

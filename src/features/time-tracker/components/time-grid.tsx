@@ -15,9 +15,11 @@ export type TimeGridProps = {
   month: number
   slots?: SlotMap
   activeSlotKey?: SlotKey | null
-  onCellActivate?: (
+  selectedKeys?: Set<SlotKey>
+  isSelecting?: boolean
+  onCellPointerDown?: (
     key: SlotKey,
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.PointerEvent<HTMLButtonElement>
   ) => void
 }
 
@@ -26,12 +28,14 @@ export function TimeGrid({
   month,
   slots = {},
   activeSlotKey = null,
-  onCellActivate,
+  selectedKeys = new Set(),
+  isSelecting = false,
+  onCellPointerDown,
 }: TimeGridProps) {
   const days = getDaysInMonth(year, month)
 
   return (
-    <div className="overflow-x-auto">
+    <div className={cn("overflow-x-auto", isSelecting && "select-none")}>
       <div
         className="inline-grid gap-px"
         style={{
@@ -76,9 +80,12 @@ export function TimeGrid({
               return (
                 <TimeCell
                   key={key}
+                  slotKey={key}
                   activity={activity}
-                  isSelected={key === activeSlotKey}
-                  onClick={(event) => onCellActivate?.(key, event)}
+                  isSelected={
+                    selectedKeys.has(key) || key === activeSlotKey
+                  }
+                  onPointerDown={(event) => onCellPointerDown?.(key, event)}
                 />
               )
             })}

@@ -29,6 +29,7 @@ export type ActivityPickerProps = {
   activities: Activity[]
   onSelect: (activityId: string) => void
   onClear: () => void
+  selectionCount?: number
 }
 
 export function ActivityPicker({
@@ -38,6 +39,7 @@ export function ActivityPicker({
   activities,
   onSelect,
   onClear,
+  selectionCount = 1,
 }: ActivityPickerProps) {
   if (!open || !anchorRect) {
     return null
@@ -87,7 +89,9 @@ export function ActivityPicker({
             </CommandGroup>
             <CommandGroup heading="Actions">
               <CommandItem value="clear slot" onSelect={onClear}>
-                Clear slot
+                {selectionCount > 1
+                  ? `Clear ${selectionCount} slots`
+                  : "Clear slot"}
               </CommandItem>
             </CommandGroup>
           </CommandList>

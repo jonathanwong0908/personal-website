@@ -1,17 +1,17 @@
-import type { Activity } from "../types"
+import type { Activity, SlotKey } from "../types"
 import { cn } from "@/lib/utils"
 
 export type TimeCellProps = {
+  slotKey: SlotKey
   activity?: Activity
   isSelected?: boolean
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   onPointerDown?: (e: React.PointerEvent<HTMLButtonElement>) => void
 }
 
 export function TimeCell({
+  slotKey,
   activity,
   isSelected = false,
-  onClick,
   onPointerDown,
 }: TimeCellProps) {
   const isFilled = Boolean(activity)
@@ -19,8 +19,8 @@ export function TimeCell({
   return (
     <button
       type="button"
+      data-slot-key={slotKey}
       aria-label={activity?.label ?? "Empty slot"}
-      onClick={onClick}
       onPointerDown={onPointerDown}
       className={cn(
         "size-7 shrink-0 rounded-sm border text-xs leading-none",
