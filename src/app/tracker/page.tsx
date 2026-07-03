@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -34,7 +35,7 @@ export default function TrackerPage() {
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
 
-  const { slots, activities, setSlot, clearSlot } = useTimeTracker({
+  const { slots, activities, saveStatus, setSlot, clearSlot } = useTimeTracker({
     year,
     month,
   });
@@ -108,13 +109,21 @@ export default function TrackerPage() {
           <div>
             <CardTitle>Time Tracker</CardTitle>
             <CardDescription>
-              Click a cell to pick an activity. Assignments are in memory only
-              until Phase 4.
+              Click a cell to assign an activity. Data is saved locally in your
+              browser.
             </CardDescription>
           </div>
-          <Button variant="outline" disabled>
-            {monthLabel}
-          </Button>
+          <div className="flex items-center gap-2">
+            {saveStatus === "saving" && (
+              <Badge variant="secondary">Saving…</Badge>
+            )}
+            {saveStatus === "saved" && (
+              <Badge variant="outline">Saved</Badge>
+            )}
+            <Button variant="outline" disabled>
+              {monthLabel}
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
           <TimeGrid
