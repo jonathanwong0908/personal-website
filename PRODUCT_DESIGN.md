@@ -296,14 +296,119 @@ Positioning line: **spreadsheet flexibility, productized entry, insights built f
 
 ---
 
-## 14. Prototype lessons (optional context)
+## 14. Prototype lessons and implementation heads-up
 
-The exploratory prototype proved:
-- Month grid + 30-min mental model is usable  
-- Desktop drag-select and mobile paint-brush are viable interaction patterns  
-- localStorage is fine for spikes, **not** for the product  
+The exploratory prototype (Next.js + localStorage, ~30-min slots, single activity per cell) proved the grid UX is viable. **Do not copy** its hard-coded activities, single-activity slot model, or localStorage-as-source-of-truth. **Do reuse** the interaction lessons below — several pieces are easy to get subtly wrong.
 
-**Do not copy** its hard-coded activities, single activity-per-slot model, or localStorage-as-source-of-truth into the new app. Reuse only interaction ideas and UX confidence.
+### 14.1 What the prototype built (map for implementers)
+
+| Area | Prototype approach |
+|------|--------------------|
+| Domain | `SlotKey = YYYY-MM-DD:slotIndex`, sparse `SlotMap = Record<SlotKey, activityId>` |
+| Grid | CSS grid: sticky time column + one column per day; **all cells mounted** (month × 48) |
+| Desktop entry | Click → activity popover; drag → rectangular multi-select → same popover |
+| Mobile entry | Bottom activity toolbar = brush; tap/drag paints or erases (no popover) |
+| Hit-testing while dragging | `document.elementFromPoint` + `data-slot-key` on each cell |
+| Persistence | Debounced `localStorage` per month key; flush on effect cleanup |
+| Stats | `hours = slotCount × (SLOT_MINUTES / 60)`; untracked = total month slots − tracked |
+| Input routing | `pointerType === "mouse"` → desktop selection; otherwise → touch paint |
+
+### 14.2 Tricky parts — read before reimplementing the grid
+
+These are the hard bits. Budget time for them in the new implementation plan.
+
+#### T1 — Desktop drag-select is not “mouseenter on cells”
+- Selection is a **rectangle** between anchor slot and focus slot (day index × slot index), not a freehand path.
+- Pointer often leaves the start cell; you need **document-level** `pointermove` / `pointerup` / `pointercancel`, not only cell handlers.
+- Use **pointer capture** on the start target so the gesture survives leaving the element.
+- Distinguish **click vs drag** with a small movement threshold (~4px). Below threshold → single-cell activate; above → multi-select complete.
+- Keep selection session state in **refs** (and/or a module-level session) so document listeners don’t close over stale React state.
+- Callbacks passed into the hook (`onClickActivate`, etc.) should be read via refs updated every render, or document listeners will call outdated closures.
+
+#### T2 — Hit-testing under the cursor
+- While dragging/painting, resolve the cell with `elementFromPoint(x, y)` and `closest("[data-slot-key]")`.
+- Every interactive cell **must** expose a stable `data-slot-key` (or equivalent). Overlays, rings, or child emoji nodes must not break `closest`.
+- If the pointer is over gutters, sticky labels, or outside the grid, keep the **last valid** focus slot (don’t clear the selection).
+
+#### T3 — Mobile paint vs scroll (the hardest UX bug)
+- A month grid scrolls horizontally (and often vertically). Native touch scrolling **fights** paint-drag.
+- Prototype approach:
+  - Only enter paint mode when a brush is active.
+  - On paint `pointerdown`, set scroll container `touch-action: none` and restore on end.
+  - Listen to `touchmove` / `pointermove` with `{ passive: false }` and `preventDefault()` while painting.
+  - Mark the grid `select-none touch-none` while selecting/painting to reduce text selection / browser gestures.
+- Paint is **path-based** (cells entered during the gesture), not rectangular like desktop select — different algorithm from T1.
+- Paint each cell **at most once per gesture** (track a `Set` of keys in the session) to avoid repeat writes / render thrash.
+- Capture pointer on the **scroll container** (not only the cell) so move events keep flowing as the finger crosses cells.
+
+#### T4 — One grid, two input systems
+- Desktop and mobile want different metaphors (select-then-assign vs brush-paint).
+- Route on `event.pointerType` (or equivalent), not only CSS breakpoint — a phone can connect a mouse; a desktop can use a touchscreen.
+- Breakpoint still matters for **chrome** (bottom toolbar vs popover), but gesture routing should follow pointer type.
+- Month navigation / unmount must **tear down** both sessions (remove document listeners, release capture, unlock `touch-action`).
+
+#### T5 — Grid performance and layout
+- Full month × 48 slots ≈ 1.3k–1.5k cell buttons; at **15-min** that becomes ≈ **2.7k–3k** cells. Acceptable for a spike; risky as features grow (secondary indicators, dimension dots, selection rings).
+- Plan for **virtualization** or canvas/Skia later; for v1, at least avoid heavy per-cell subscriptions and keep cells memo-light.
+- Sticky first column (time labels) while scrolling horizontally is required for usability; sticky header row for day labels is a natural follow-on.
+- CSS `grid` + `contents` rows works, but measure scroll performance on real phones early.
+
+#### T6 — Time math and keys
+- Centralize `slotIndex ↔ time label`, `date + index ↔ SlotKey`, month day lists, and range expansion.
+- Prototype used 30-min ⇒ `SLOTS_PER_DAY = 48` and labels via `hours = floor(index/2)`. At **15-min**, `SLOTS_PER_DAY = 96` and label math must use `SLOT_MINUTES` generically — don’t hardcode `/ 2`.
+- `Date` construction for calendar days should use **local** `new Date(y, m-1, d)` (not UTC strings) to avoid off-by-one day bugs.
+- Range selection must clamp to days that exist in the viewed month (dragging outside returns no extra keys).
+
+#### T7 — Persistence races
+- Debounced save is fine; **always flush on cleanup** when `slots` / month changes so fast month switches don’t drop the last edit.
+- Don’t save until the month’s initial load finishes (`isLoaded` gate) or you’ll persist `{}` over real data.
+- Product build: same race exists with async server load — gate writes until hydration/fetch completes; handle offline errors explicitly (v1 is online-first).
+
+#### T8 — Stats correctness
+- Tracked hours = `count(filled slots) × hoursPerSlot`. Keep `hoursPerSlot` derived from slot minutes in one place.
+- Ignore orphan activity ids (deleted activities) in aggregations or remap them.
+- Untracked % needs `daysInMonth * slotsPerDay` as denominator — February vs 31-day months matter.
+- When secondary/dimensions arrive, **do not** reuse the prototype’s single-id counter without splitting primary vs overlay (see §5).
+
+### 14.3 What gets harder in the real product (vs prototype)
+
+| Upgrade | Why it’s harder |
+|---------|-----------------|
+| 15-min slots + zoom | 2× cells; zoom-out hour rows are a **view aggregation** over 4 slots, not a second source of truth |
+| Secondary + dimensions on brush | Brush state becomes a bundle; paint/select must write a structured slot, not one id |
+| NL agent fills | Same write path as brush, but with overwrite prompts and entity resolution |
+| Cloud sync | Replace localStorage adapter; keep the hook API stable (`setSlot` / `setSlots` / load-by-range) |
+| Custom activities | Stats and grid colors can’t rely on a static `ACTIVITY_BY_ID` constant |
+
+### 14.4 Suggested reuse policy for a greenfield repo
+
+**Reuse as reference (ideas / algorithms):**
+- Rectangular range from two slot keys  
+- `elementFromPoint` hit-testing  
+- Click-vs-drag threshold  
+- Touch paint session + scroll locking  
+- Debounced save with flush-on-cleanup  
+- Sparse map keyed by date+slotIndex  
+
+**Do not reuse as product truth:**
+- Hard-coded default activities as the only taxonomy  
+- One activity id per slot  
+- localStorage-only persistence  
+- Assumptions that `SLOTS_PER_DAY === 48`  
+
+### 14.5 Prototype file map (if the spike repo is still available)
+
+Useful reading order in the spike (paths may not exist in the new repo):
+
+1. `time-utils.ts` — keys, range expansion, month days  
+2. `slot-hit-test.ts` — `elementFromPoint`  
+3. `use-slot-selection.ts` — desktop drag/click  
+4. `use-touch-paint.ts` — mobile paint + scroll lock  
+5. `use-time-tracker.ts` — load/save races  
+6. `time-grid.tsx` / `time-cell.tsx` — grid layout + `data-slot-key`  
+7. `tracker/page.tsx` — wiring mouse vs touch + picker/toolbar  
+
+If the spike is unavailable, §14.2 alone is enough to reimplement carefully.
 
 ---
 
@@ -357,11 +462,12 @@ When creating `IMPLEMENTATION_PLAN.md` (or equivalent) in a **new** repo:
 6. Keep dimension creation behind confirmation + recipes  
 7. Call out zoom as a UI milestone that must not require re-modeling slots if storage is already 15-min  
 8. Treat this file as product law; if implementation wants to violate a Decision Log row, update this doc first  
+9. **Read §14 before scheduling grid work** — allocate explicit tasks for drag-select, hit-testing, touch-vs-scroll, save gating, and 15-min key math; these are where the prototype burned the most subtle bugs  
 
 ### Suggested implementation phase sketch (for the other doc to expand)
 1. Scaffold + auth + empty app shell  
 2. Activity/category library + onboarding suggestions  
-3. 15-min slot grid + primary brush + persistence  
+3. 15-min slot grid + primary brush + persistence (**include §14.2 T1–T7 as subtasks**)  
 4. Secondary activity + stats #1  
 5. Dimensions CRUD + slot attachment + brush bundle + stats #2/#4  
 6. Guides/recipes + insight nudges  
