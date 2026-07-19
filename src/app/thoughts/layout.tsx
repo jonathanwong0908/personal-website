@@ -7,7 +7,7 @@ export default function ThoughtsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-xl flex-col gap-8 px-4 py-8 font-serif md:py-32">
+    <div className="mx-auto flex min-h-screen w-full max-w-xl flex-col gap-8 px-4 py-8 font-sans md:py-32">
       <nav>
         <Link
           href="/"
