@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Google_Sans } from "next/font/google";
+import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { cn } from "@/lib/utils";
 
-const googleSans = Google_Sans({
-  variable: "--font-google-sans",
-  subsets: ["latin"],
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const coolvetica = localFont({
+  src: "../../public/fonts/Coolvetica Rg.otf",
+  variable: "--font-coolvetica",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body
-        className={`${googleSans.variable} ${geistMono.variable} antialiased`}
+        className={`${coolvetica.variable} font-sans antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
