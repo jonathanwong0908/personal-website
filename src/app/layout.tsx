@@ -1,40 +1,53 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Libre_Baskerville } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const coolvetica = localFont({
+  src: "../../public/fonts/Coolvetica Rg.otf",
+  variable: "--font-coolvetica",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const caros = localFont({
+  src: "../../public/fonts/Caros.otf",
+  variable: "--font-caros",
+  display: "swap",
 });
 
-const fontSerif = Libre_Baskerville({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: "400",
+const carosMedium = localFont({
+  src: "../../public/fonts/Caros Medium.otf",
+  variable: "--font-caros-medium",
+  display: "swap",
+});
+
+const carosBold = localFont({
+  src: "../../public/fonts/Caros Bold.otf",
+  variable: "--font-caros-bold",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Jonathan Wong",
-  description: "Software design and development",
+  description: "Life enjoyer",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${coolvetica.variable} ${caros.variable} ${carosMedium.variable} ${carosBold.variable}`}
+    >
       <body
-        className={`${fontSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${coolvetica.className} text-[17px] tracking-[0.009rem] antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
