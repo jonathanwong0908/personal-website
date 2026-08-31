@@ -159,6 +159,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-coolvetica), sans-serif;
+  }
+  html {
+    font-family: var(--font-coolvetica), sans-serif;
   }
   html {
     @apply font-sans;

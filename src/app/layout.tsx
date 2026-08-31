@@ -12,9 +12,27 @@ const coolvetica = localFont({
   display: "swap",
 });
 
+const caros = localFont({
+  src: "../../public/fonts/Caros.otf",
+  variable: "--font-caros",
+  display: "swap",
+});
+
+const carosMedium = localFont({
+  src: "../../public/fonts/Caros Medium.otf",
+  variable: "--font-caros-medium",
+  display: "swap",
+});
+
+const carosBold = localFont({
+  src: "../../public/fonts/Caros Bold.otf",
+  variable: "--font-caros-bold",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Jonathan Wong",
-  description: "Software design and development",
+  description: "Life enjoyer",
 };
 
 export default function RootLayout({
@@ -23,8 +41,14 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${coolvetica.variable} font-sans text-lg antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${coolvetica.variable} ${caros.variable} ${carosMedium.variable} ${carosBold.variable}`}
+    >
+      <body
+        className={`${coolvetica.className} text-[17px] tracking-[0.009rem] antialiased`}
+      >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
